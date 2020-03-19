@@ -1,0 +1,26 @@
+﻿DELETE FROM dbo.MatchOneQ2
+
+INSERT INTO [dbo].[MatchOneQ2] (BWCUSTOMERID)
+SELECT
+	sae.BWCUSTOMERID
+FROM SLX_Account_ext sae
+	,Slx_account sa
+WHERE sa.STATUS = 'Active'
+AND sa.[﻿ACCOUNTID] = sae.ACCOUNTID
+GROUP BY BWCUSTOMERID
+HAVING COUNT(*) = 1
+
+DELETE FROM MatchManyQ3
+INSERT INTO [dbo].[MatchOneQ2] (BWCUSTOMERID)
+SELECT
+	sae.BWCUSTOMERID
+FROM SLX_Account_ext sae
+	,Slx_account sa
+WHERE sa.STATUS = 'Active'
+AND sa.[﻿ACCOUNTID] = sae.ACCOUNTID
+GROUP BY BWCUSTOMERID
+HAVING COUNT(*) = 2
+
+
+
+

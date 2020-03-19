@@ -1,0 +1,1 @@
+SELECT * FROM Q2DATA qd WHERE qd.State = $(state)
