@@ -3,12 +3,12 @@
 
 -- rwc 3/24/2020
 
-SELECT 
-	SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) as externalid -- SO Header
+SELECT
+	SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS externalid -- SO Header
    ,SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS [tranId] -- SO Header
    ,soh.CustomerNo AS [Customer] -- AR Customer
    ,FORMAT(soh.OrderDate, 'MM/dd/yy') AS [trandate] -- SO Header
-   ,orderStatus AS [orderstatus] -- SO Header
+   ,orderstatus AS [orderstatus] -- SO Header
    ,'?' AS [startdate]
    ,'?' AS [enddate]
    ,CustomerPONo AS [otherrefnum] -- SO Header
@@ -20,18 +20,31 @@ SELECT
    ,'?' AS [partner]
    ,'?' AS [Department]
    ,'?' AS [Class]
-   ,case when sod.WarehouseCode = '000' then 'Ohio' end AS [Location] -- SO Details
+   ,CASE
+		WHEN sod.WarehouseCode = '000' THEN 'Ohio'
+	END AS [Location] -- SO Details
    ,'?' AS [couponcode]
    ,'?' AS [promocode]
    ,sod.Discount AS [discount-discountItem] -- SO Details
    ,'?' AS [discount-discountrate]
-   ,replace(sod.ItemCode,'/','') AS [itemLine_item] -- SO Details
+   ,REPLACE(sod.ItemCode, '/', '') AS [itemLine_item] -- SO Details
+   ,CASE
+		WHEN (SELECT
+					TO_NETSUITE
+				FROM MAS_NS_XLAT_PART xl
+				WHERE xl.FROM_MAS = REPLACE(sod.ItemCode, '/', ''))
+			= NULL THEN REPLACE(sod.ItemCode, '/', '')
+		ELSE (SELECT
+					TO_NETSUITE
+				FROM MAS_NS_XLAT_PART
+				WHERE FROM_MAS = REPLACE(sod.ItemCode, '/', ''))
+	END AS new_part
    ,sod.QuantityOrdered AS [itemLine_quantity] -- SO Details
    ,'?' AS [itemLine_serialNumbers]
    ,sod.UnitOfMeasure AS [itemLine_units] -- SO Details
    ,sod.UnitPrice AS [itemLine_salesPrice] -- SO Details
    ,[UnitPrice] AS [itemLine_amount] -- SO Details
-   ,replace(ItemCodeDesc,',','') AS [itemLine_description] -- SO Details
+   ,REPLACE(ItemCodeDesc, ',', '') AS [itemLine_description] -- SO Details
    ,'?' AS [itemLine_isTaxable]
    ,'?' AS [itemLine_priceLevel]
    ,'?' AS [itemLine_department]
@@ -82,7 +95,8 @@ SELECT
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo
-left join AR_Customer arc on arc.CustomerNo = soh.CustomerNo
+LEFT JOIN AR_Customer arc
+	ON arc.CustomerNo = soh.CustomerNo
 WHERE OrderType = 'R'
 AND soh.SalesOrderNo = '0071578'
 ORDER BY trandate, tranId, sod.LineKey
