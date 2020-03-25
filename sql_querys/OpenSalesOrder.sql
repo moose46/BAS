@@ -31,7 +31,7 @@ SELECT
    ,sod.UnitOfMeasure AS [itemLine_units] -- SO Details
    ,sod.UnitPrice AS [itemLine_salesPrice] -- SO Details
    ,[UnitPrice] AS [itemLine_amount] -- SO Details
-   ,[ItemCodeDesc] AS [itemLine_description] -- SO Details
+   ,replace(ItemCodeDesc,',','') AS [itemLine_description] -- SO Details
    ,'?' AS [itemLine_isTaxable]
    ,'?' AS [itemLine_priceLevel]
    ,'?' AS [itemLine_department]
