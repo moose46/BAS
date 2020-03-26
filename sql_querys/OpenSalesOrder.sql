@@ -21,7 +21,15 @@ SELECT
    ,'?' AS [Department]
    ,'?' AS [Class]
    ,CASE
-		WHEN sod.WarehouseCode = '000' THEN 'Ohio'
+		WHEN (SELECT
+					Description
+				FROM MAS_WAREHOUSE
+				WHERE sod.WarehouseCode = Warehouse)
+			= NULL THEN sod.WarehouseCode
+		ELSE (SELECT
+					Description
+				FROM MAS_WAREHOUSE
+				WHERE sod.WarehouseCode = Warehouse)
 	END AS [Location] -- SO Details
    ,'?' AS [couponcode]
    ,'?' AS [promocode]
@@ -98,5 +106,5 @@ LEFT JOIN SO_SalesOrderDetail sod
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
 WHERE OrderType = 'R'
-AND soh.SalesOrderNo = '0071578'
+AND soh.SalesOrderNo LIKE '00715%'
 ORDER BY trandate, tranId, sod.LineKey
