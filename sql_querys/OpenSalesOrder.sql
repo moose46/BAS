@@ -2,7 +2,7 @@
 -- Reference Open Sales Order Template_MFG_FINAL.xlsx
 
 -- rwc 3/24/2020
-
+-- added warehouse code, change from sod warehousecode to soh warehousecode
 SELECT
 	SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS externalid -- SO Header
    ,SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS [tranId] -- SO Header
@@ -24,13 +24,13 @@ SELECT
 		WHEN (SELECT
 					Description
 				FROM MAS_WAREHOUSE
-				WHERE sod.WarehouseCode = Warehouse)
-			= NULL THEN sod.WarehouseCode
+				WHERE soh.WarehouseCode = Warehouse)
+			= NULL THEN soh.WarehouseCode
 		ELSE (SELECT
 					Description
 				FROM MAS_WAREHOUSE
-				WHERE sod.WarehouseCode = Warehouse)
-	END AS [Location] -- SO Details
+				WHERE soh.WarehouseCode = Warehouse)
+	END AS [Location] -- SO Header
    ,'?' AS [couponcode]
    ,'?' AS [promocode]
    ,sod.Discount AS [discount-discountItem] -- SO Details
