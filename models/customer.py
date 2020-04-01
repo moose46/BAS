@@ -324,7 +324,6 @@ class Customer(object):
         except Exception as e:
             # email Not Valid
             self.error = True
-
 # @property
 # def Account(self):
 #	return self.account

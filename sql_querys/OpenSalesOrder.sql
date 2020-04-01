@@ -3,6 +3,12 @@
 
 -- rwc 3/24/2020
 -- added warehouse code, change from sod warehousecode to soh warehousecode
+USE babblefish
+GO
+
+DROP TABLE COOKED_SO
+GO
+
 SELECT
 	SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS externalid -- SO Header
    ,SUBSTRING(soh.SalesOrderNo, PATINDEX('%[^%0]%', soh.SalesOrderNo), LEN(soh.SalesOrderNo)) AS [tranId] -- SO Header
@@ -35,18 +41,31 @@ SELECT
    ,'?' AS [promocode]
    ,sod.Discount AS [discount-discountItem] -- SO Details
    ,'?' AS [discount-discountrate]
-   ,REPLACE(sod.ItemCode, '/', '') AS [itemLine_item] -- SO Details
+   ,sod.ItemCode AS [itemLine_item] -- SO Details
    ,CASE
-		WHEN (SELECT
-					TO_NETSUITE
-				FROM MAS_NS_XLAT_PART xl
-				WHERE xl.FROM_MAS = REPLACE(sod.ItemCode, '/', ''))
-			= NULL THEN REPLACE(sod.ItemCode, '/', '')
+		WHEN EXISTS (SELECT
+					*
+				FROM ITEMCODE_MAS_NS xl
+				WHERE xl.MAS = REPLACE(sod.ItemCode, '/', '')) THEN (SELECT
+					xl.NETSUITE
+				FROM ITEMCODE_MAS_NS xl
+				WHERE xl.MAS = REPLACE(sod.ItemCode, '/', ''))
 		ELSE (SELECT
-					TO_NETSUITE
-				FROM MAS_NS_XLAT_PART
-				WHERE FROM_MAS = REPLACE(sod.ItemCode, '/', ''))
-	END AS new_part
+					netsuite
+				FROM ITEMCODE_MAS_NS
+				WHERE MAS = REPLACE(sod.ItemCode, '/', ''))
+	END AS xlated_part
+   ,CASE
+		WHEN EXISTS (SELECT
+					xl.MAS
+				FROM ITEMCODE_MAS_NS xl
+				WHERE xl.MAS = REPLACE(sod.ItemCode, '/', '')) THEN (SELECT
+					xl.NETSUITE
+				FROM ITEMCODE_MAS_NS xl
+				WHERE xl.MAS = REPLACE(sod.ItemCode, '/', ''))
+		ELSE REPLACE(sod.ItemCode, '/', '')
+	END AS final_part
+
    ,sod.QuantityOrdered AS [itemLine_quantity] -- SO Details
    ,'?' AS [itemLine_serialNumbers]
    ,sod.UnitOfMeasure AS [itemLine_units] -- SO Details
@@ -99,12 +118,12 @@ SELECT
    ,'?' AS [custbody_nsts_ci_exclude]
    ,'?' AS [custom:Field Name]
    ,'?' AS [custom:Field Name1]
-   ,'?' AS [custom:Field Name2]
+   ,'?' AS [custom:Field Name2] INTO COOKED_SO
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
 WHERE OrderType = 'R'
-AND soh.SalesOrderNo LIKE '00715%'
+--AND soh.SalesOrderNo LIKE '00715%'
 ORDER BY trandate, tranId, sod.LineKey

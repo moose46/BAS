@@ -8,7 +8,3 @@
 
  $cooked_data = Import-Csv cooked_so_final.csv
 
- 
- #$cooked_data
-
- #export-csv 
