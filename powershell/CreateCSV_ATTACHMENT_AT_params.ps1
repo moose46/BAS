@@ -7,14 +7,14 @@ Param(
     [int]$quarter
 
 )
-
-sqlcmd -d babblefish -o error.log -E  -i "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\Attachment_AT_params.sql" -v p_year=$year p_quarter=$quarter --% -S daffY-duck
+# changed name to 
+sqlcmd -d babblefish -o error.log -E  -i "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\ProcessAttachments_AT_params.sql" -v p_year=$year p_quarter=$quarter --% -S daffY-duck
 
 Set-Variable -Name EXPORT_DB -Value 'babblefish'
 Set-Variable -Name TABLE_NAME -Value 'ATTACHMENT_CSV'
 Set-Variable -Name EXPORT_HEADER_FILE_NAME  -Value 'ATTACHMENT_CSV_HEADERS.csv'
 Set-Variable -Name EXPORT_TXT_FILENAME -Value 'ATTACHMENT_CSV.txt'
-Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\crm\data_to_crm\'
+Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\Attachments'
 Set-Location $EXPORT_PATH
 #Write-Host $EXPORT_PATH
 

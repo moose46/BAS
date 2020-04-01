@@ -10,6 +10,7 @@ DROP TABLE dbo.Q1DATA
 --so the source data for new customers should be MAS
 --and why don’t we filter OUT anything created BEFORE 11/26/19
 --and also anything that has text in the account number field and has a null UDF_BWID.
+--Change the name to process new customers, the old Q1
 SELECT
 	--ac.DateCreated
 	ac.CustomerName

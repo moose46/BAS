@@ -1,12 +1,12 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
 -- Reference Open Sales Order Template_MFG_FINAL.xlsx
-
+-- creates table SO_COOKED
 -- rwc 3/24/2020
 -- added warehouse code, change from sod warehousecode to soh warehousecode
 USE babblefish
 GO
 
-DROP TABLE COOKED_SO
+DROP TABLE SO_COOKED
 GO
 
 SELECT
@@ -94,7 +94,16 @@ SELECT
    ,[ShipToZipCode] AS [shipZip]-- SO Header
    ,[ShipToCountryCode] AS [shipCountry]-- SO Header
    ,'?' AS [shipPhone]
-   ,arc.TermsCode AS [terms] -- AR Customer
+	--,arc.TermsCode AS [terms] -- AR Customer
+   ,CASE
+		WHEN EXISTS (SELECT
+					TERMS_CODE
+				FROM AR_CUSTOMER_TERMS_CODE
+				WHERE TERMS_CODE = arc.TermsCode) THEN (SELECT
+					NS_TERMS
+				FROM AR_CUSTOMER_TERMS_CODE
+				WHERE TERMS_CODE = arc.TermsCode)
+	END AS terms
    ,'?' AS [billattention]
    ,[BillToName] AS [billAddressee] -- SO Header
    ,[BillToAddress1] AS [billAddr1] -- SO Header
@@ -118,7 +127,7 @@ SELECT
    ,'?' AS [custbody_nsts_ci_exclude]
    ,'?' AS [custom:Field Name]
    ,'?' AS [custom:Field Name1]
-   ,'?' AS [custom:Field Name2] INTO COOKED_SO
+   ,'?' AS [custom:Field Name2] INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo

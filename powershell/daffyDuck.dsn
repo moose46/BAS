@@ -1,0 +1,9 @@
+[ODBC]
+DRIVER=ODBC Driver 17 for SQL Server
+TrustServerCertificate=No
+DATABASE=babblefish
+WSID=DAFFY-DUCK
+APP=Microsoft® Windows® Operating System
+Trusted_Connection=Yes
+SERVER=DAFFY-DUCK
+Description=Babblefish

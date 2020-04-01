@@ -1,5 +1,5 @@
 ﻿-- USE this script TO CREATE the csv file data to be attached to the copy script files
--- to be used with CreateCSV_ATTACHMENT_CSV.ps1
+-- to be used with CreateCSV_ATTACHMENT_AT_params.ps1
 -- Modified 3/9/2020
 -- create the attachment_was_is data to create the batch file load scripts
 -- modified 3/10/2020 to incude zip file numbering for auditing

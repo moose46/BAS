@@ -14,7 +14,7 @@ Author: Robert W. Curtiss
 """
 EXPORT_FOLDER = r"C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\export_to_kathy\\"
 ARCHIVE_FOLDER = r"C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\export_to_kathy\archive\\"
-IMPORT_FOLDER = r"C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\import_from_bas"
+IMPORT_FOLDER = r"C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_from_crm"
 
 TEST1_DATASOURCE = "C:\\Users\\me\\Source\\Repos\\BabbleFishV4\\BabbleFishV3\\data\\BabbleFish.accdb"
 

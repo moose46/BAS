@@ -1,8 +1,9 @@
 ﻿# Modified 3/9/2020 to include running 
 # 3/19/2020
-#
+# 4/1/2020 changed directorys for output and sql script names to Process????
+# used by CreateCSV_ATTACHMENT_??_params.ps1 to create script file to be run on CRM to create attactment zip files
 
-Set-Variable -Name EXPORT_PATH -Value "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\crm\data_to_crm\"
+Set-Variable -Name EXPORT_PATH -Value "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\Attachments\"
 Set-Variable -Name SQL_STATEMENT -Value "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\CreateTable_ATTACHMENT_CSV.sql"
 
 # set the file name to year-quarter audit_num.ps1, get the last audit_num from attachment_template_import
