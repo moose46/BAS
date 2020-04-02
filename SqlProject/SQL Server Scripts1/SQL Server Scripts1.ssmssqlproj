@@ -1,0 +1,453 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="SQL Server Scripts1">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items />
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Attachment_FileCounts.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_FileCounts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Attachment_FileCountsV2.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_FileCountsV2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Attachment_Step2_params.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_Step2_params.sql</FullPath>
+        </FileNode>
+        <FileNode Name="BAS 2 BWCUSTOMERID Changed.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>BAS 2 BWCUSTOMERID Changed.sql</FullPath>
+        </FileNode>
+        <FileNode Name="BAS 3 Changed Terms.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>BAS 3 Changed Terms.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CheckForUniqueRecords.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CheckForUniqueRecords.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CountAttachedFilesByQuarters.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CountAttachedFilesByQuarters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Create TABLE ar_customer_lt.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Create TABLE ar_customer_lt.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Create Terms Code Map.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Create Terms Code Map.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateCopyScriptFileName.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateCopyScriptFileName.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateSequence_auditZipFiles.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateSequence_auditZipFiles.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable AR_Customer.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable AR_Customer.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ACCOUNT.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ACCOUNT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ADDRESS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ADDRESS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ADDRESSEXT.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ADDRESSEXT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_AR_CUSTOMER_TERMS_CODE.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_AR_CUSTOMER_TERMS_CODE.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT (2).sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT (2).sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT_CSV.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT_CSV.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT_WAS_IS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT_WAS_IS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_AUDIT_ZIPFILES.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_AUDIT_ZIPFILES.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_HISTORY.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_HISTORY.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ITEMCODEA_MAS_NS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ITEMCODEA_MAS_NS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ITEMCODES_MAS_NS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ITEMCODES_MAS_NS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_MAS_WAREHOUSE.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_MAS_WAREHOUSE.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_PO_PurchaseOderDetail.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_PO_PurchaseOderDetail.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_PO_PurchasreOrderHeader.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_PO_PurchasreOrderHeader.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_PRODUCT.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_PRODUCT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_SalesOrderHeader.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_SalesOrderHeader.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ZIP_FILE_LIST.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ZIP_FILE_LIST.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTableAR_CustomerTermsCode.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTableAR_CustomerTermsCode.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyAttachment.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DanFanceyAttachment.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyAttachmentCSV.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DanFanceyAttachmentCSV.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyWasIs.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DanFanceyWasIs.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Find Child by ID.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Find Child by ID.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Find NS Record by Internal ID.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Find NS Record by Internal ID.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Find_BWCustomerID.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Find_BWCustomerID.sql</FullPath>
+        </FileNode>
+        <FileNode Name="FindDuplicateItemCodes.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>FindDuplicateItemCodes.sql</FullPath>
+        </FileNode>
+        <FileNode Name="FindMissingCustomersSO.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>FindMissingCustomersSO.sql</FullPath>
+        </FileNode>
+        <FileNode Name="GetColumnNamesCSV.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>GetColumnNamesCSV.sql</FullPath>
+        </FileNode>
+        <FileNode Name="GetSLXTableNames.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>GetSLXTableNames.sql</FullPath>
+        </FileNode>
+        <FileNode Name="MarioAndFanceyNastyCharacters.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>MarioAndFanceyNastyCharacters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NonNumericSalesOrderNo.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>NonNumericSalesOrderNo.sql</FullPath>
+        </FileNode>
+        <FileNode Name="NS_VendorQuery.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>NS_VendorQuery.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql</FullPath>
+        </FileNode>
+        <FileNode Name="OpenPurchaseOrder.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>OpenPurchaseOrder.sql</FullPath>
+        </FileNode>
+        <FileNode Name="PO_HeaderQuery.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>PO_HeaderQuery.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessAttachments_AT_params.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessAttachments_AT_params.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessAttachmentsMailMerge.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessAttachmentsMailMerge.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessNewCustomers.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessNewCustomers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessSalesOrders.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessSalesOrders.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q1 Customers By Date Created.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q1 Customers By Date Created.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q2 Find SLX Acoounts One Matching.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q2 Find SLX Acoounts One Matching.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q2 V2.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q2 V2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q3 V1.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q3 V1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q4 Account Addresses.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q4 Account Addresses.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q6 V1.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Q6 V1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Query All Children.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Query All Children.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Query All Parents.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Query All Parents.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Query MatchOne Q2 By BWCUSTOMERID.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Query MatchOne Q2 By BWCUSTOMERID.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Query Q2DATA.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Query Q2DATA.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Query Table Columns.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Query Table Columns.sql</FullPath>
+        </FileNode>
+        <FileNode Name="QueryVendorAddress.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>QueryVendorAddress.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Record Count All Tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Record Count All Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Refresh All Match Tables.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Refresh All Match Tables.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Refresh MatchOneQ2.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Refresh MatchOneQ2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Run_AttachmentTemplateOnlyImport.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Run_AttachmentTemplateOnlyImport.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Test id 110554.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Test id 110554.sql</FullPath>
+        </FileNode>
+        <FileNode Name="test_state.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>test_state.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TimesheetOutstanding.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>TimesheetOutstanding.sql</FullPath>
+        </FileNode>
+        <FileNode Name="TimesheetTotals.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>TimesheetTotals.sql</FullPath>
+        </FileNode>
+        <FileNode Name="VendorLocationPuzzlePO.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>VendorLocationPuzzlePO.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ViewAllUniqueExternalIDsNetsuite.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ViewAllUniqueExternalIDsNetsuite.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
