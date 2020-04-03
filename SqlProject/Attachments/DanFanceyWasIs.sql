@@ -1,0 +1,17 @@
+/****** Script for SelectTopNRows command from SSMS  ******/
+SELECT TOP (1000) [SourcePath]
+      ,[TargetPath]
+      ,[SourceFileName]
+      ,[TargetFileName]
+      ,[ExternalId]
+      ,[title]
+      ,[tranDate]
+      ,[memo]
+      ,[InternalId]
+      ,[run_id]
+      ,[SourceFileNameRaw]
+      ,[AttachID]
+      ,[MailMerge]
+      ,[DateCreated]
+  FROM [babblefish].[dbo].[ATTACHMENT_WAS_IS]
+  WHERE [SourceFileName] LIKE ('%U6UJ9A00000E (05-04-2016 09.04%')

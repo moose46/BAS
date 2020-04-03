@@ -5,12 +5,22 @@ VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SQL Server Scripts1", "SQL Server Scripts1.ssmssqlproj", "{D943EF0C-FD39-49AA-97B0-AC42C3C5B67C}"
 EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "PurchaseOrders", "..\PurchaseOrders\PurchaseOrders.ssmssqlproj", "{4A107132-4D47-4CBA-9DD0-C3830171DE39}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SalesOrders", "..\SalesOrders\SalesOrders.ssmssqlproj", "{885375A3-01A7-42E8-9416-9D3900EB37FD}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Attachments", "..\Attachments\Attachments.ssmssqlproj", "{D85877F9-3529-44DA-A99B-6CECFF067315}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D943EF0C-FD39-49AA-97B0-AC42C3C5B67C}.Default|Default.ActiveCfg = Default
+		{EEC5C366-2F05-4CD9-9BFB-8CEBAD9A9D68}.Default|Default.ActiveCfg = Default
+		{4A107132-4D47-4CBA-9DD0-C3830171DE39}.Default|Default.ActiveCfg = Default
+		{885375A3-01A7-42E8-9416-9D3900EB37FD}.Default|Default.ActiveCfg = Default
+		{D85877F9-3529-44DA-A99B-6CECFF067315}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

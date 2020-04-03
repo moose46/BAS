@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Attachments">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DAFFY-DUCK:babblefish">
+          <Created>2020-04-02T20:27:31.8936264-04:00</Created>
+          <Type>SQL</Type>
+          <Server>DAFFY-DUCK</Server>
+          <UserName>babblefish</UserName>
+          <Authentication>SQL</Authentication>
+          <InitialDB />
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Attachment_FileCounts.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_FileCounts.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Attachment_FileCountsV2.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_FileCountsV2.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Attachment_Step2_params.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Attachment_Step2_params.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CountAttachedFilesByQuarters.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CountAttachedFilesByQuarters.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateSequence_auditZipFiles.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateSequence_auditZipFiles.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT (2).sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT (2).sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT_CSV.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT_CSV.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_ATTACHMENT_WAS_IS.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_ATTACHMENT_WAS_IS.sql</FullPath>
+        </FileNode>
+        <FileNode Name="CreateTable_AUDIT_ZIPFILES.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>CreateTable_AUDIT_ZIPFILES.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyAttachment.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:False:babblefish</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName>babblefish</AssociatedConnUserName>
+          <FullPath>DanFanceyAttachment.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyAttachmentCSV.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>DanFanceyAttachmentCSV.sql</FullPath>
+        </FileNode>
+        <FileNode Name="DanFanceyWasIs.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:False:babblefish</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName>babblefish</AssociatedConnUserName>
+          <FullPath>DanFanceyWasIs.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessAttachments_AT_params.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessAttachments_AT_params.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ProcessAttachmentsMailMerge.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ProcessAttachmentsMailMerge.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Run_AttachmentTemplateOnlyImport.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Run_AttachmentTemplateOnlyImport.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>

@@ -2,7 +2,20 @@
 <SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="SQL Server Scripts1">
   <Items>
     <LogicalFolder Name="Connections" Type="2" Sorted="true">
-      <Items />
+      <Items>
+        <ConnectionNode Name="DAFFY-DUCK:DAFFY-DUCK\Bob">
+          <Created>2020-04-02T08:04:54.3286237-04:00</Created>
+          <Type>SQL</Type>
+          <Server>DAFFY-DUCK</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>SSISDB</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName />
+        </ConnectionNode>
+      </Items>
     </LogicalFolder>
     <LogicalFolder Name="Queries" Type="0" Sorted="true">
       <Items>
@@ -276,17 +289,23 @@
           <AssociatedConnUserName />
           <FullPath>Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql</FullPath>
         </FileNode>
-        <FileNode Name="OpenPurchaseOrder.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
-          <AssociatedConnUserName />
-          <FullPath>OpenPurchaseOrder.sql</FullPath>
-        </FileNode>
         <FileNode Name="PO_HeaderQuery.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
           <FullPath>PO_HeaderQuery.sql</FullPath>
+        </FileNode>
+        <FileNode Name="PO_PurchaseOrderTemplate.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>PO_PurchaseOrderTemplate.sql</FullPath>
+        </FileNode>
+        <FileNode Name="PO_PurchaseOrderTop1000.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>PO_PurchaseOrderTop1000.sql</FullPath>
         </FileNode>
         <FileNode Name="ProcessAttachments_AT_params.sql">
           <AssociatedConnectionMoniker />
@@ -306,9 +325,15 @@
           <AssociatedConnUserName />
           <FullPath>ProcessNewCustomers.sql</FullPath>
         </FileNode>
+        <FileNode Name="ProcessPurchaseOrder.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>ProcessPurchaseOrder.sql</FullPath>
+        </FileNode>
         <FileNode Name="ProcessSalesOrders.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>ProcessSalesOrders.sql</FullPath>
         </FileNode>
@@ -407,6 +432,12 @@
           <AssociatedConnSrvName />
           <AssociatedConnUserName />
           <FullPath>Run_AttachmentTemplateOnlyImport.sql</FullPath>
+        </FileNode>
+        <FileNode Name="SQLQuery1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>SQLQuery1.sql</FullPath>
         </FileNode>
         <FileNode Name="Test id 110554.sql">
           <AssociatedConnectionMoniker />

@@ -19,6 +19,7 @@ SELECT
 	END AS vendorid
    ,poh.APDivisionNo + '-' + poh.VendorNo AS netsuite_external_id
 FROM PO_PurchaseOrderHeader poh
-WHERE poh.DateCreated > DATEADD(YEAR, -1, GETDATE()) and poh.VendorNo like '%BAUER'
+WHERE poh.DateCreated > DATEADD(YEAR, -1, GETDATE())
+--AND poh.VendorNo LIKE '%BAUER'
 
 ORDER BY vendorid

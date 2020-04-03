@@ -1,4 +1,8 @@
-﻿function Invoke-Mail-Merge() {
+﻿# this file invokes CreateCSV_ATTACHMENT_??_params.ps1 for all years and quarters
+# or just by mail merge, and just attachments, or both
+# menu lets you decide your action
+
+function Invoke-Mail-Merge() {
   #Write-Host $Myselection
   Set-Variable -Name POWERSHELL_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell'
   Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\crm\data_to_crm\'
