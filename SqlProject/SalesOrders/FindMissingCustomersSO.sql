@@ -1,3 +1,8 @@
+use babblefish 
+go
+
+drop table MISSING_SO_CUSTOMERS
+
 SELECT
 	externalid
    ,Customer

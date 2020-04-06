@@ -5,9 +5,3 @@ SELECT TOP (1000)
 FROM [babblefish].[dbo].[Timesheets]
 WHERE CheckNumber IS NULL
 group by InvoiceNumber
-
-
-SELECT 
-   Format(sum([WorkedHours] * 65),'$###.00') as total
-FROM [babblefish].[dbo].[Timesheets]
-WHERE CheckNumber IS NULL
