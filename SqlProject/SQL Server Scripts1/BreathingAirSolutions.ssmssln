@@ -11,6 +11,10 @@ Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "SalesOrders", "..\SalesOrde
 EndProject
 Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Attachments", "..\Attachments\Attachments.ssmssqlproj", "{D85877F9-3529-44DA-A99B-6CECFF067315}"
 EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "TimeSheet", "..\TimeSheet\TimeSheet.ssmssqlproj", "{88784AE2-AAA8-4685-B29B-C5A866516B5C}"
+EndProject
+Project("{4F2E2C19-372F-40D8-9FA7-9D2138C6997A}") = "Netsuite", "Netsuite\Netsuite.ssmssqlproj", "{95E3586C-8745-4DB4-A29C-B55E1074BEEE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|Default = Default|Default
@@ -21,6 +25,8 @@ Global
 		{885375A3-01A7-42E8-9416-9D3900EB37FD}.Default|Default.ActiveCfg = Default
 		{D85877F9-3529-44DA-A99B-6CECFF067315}.Default|Default.ActiveCfg = Default
 		{2C39B48B-2088-4D0C-91B7-5CE413AE4005}.Default|Default.ActiveCfg = Default
+		{88784AE2-AAA8-4685-B29B-C5A866516B5C}.Default|Default.ActiveCfg = Default
+		{95E3586C-8745-4DB4-A29C-B55E1074BEEE}.Default|Default.ActiveCfg = Default
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

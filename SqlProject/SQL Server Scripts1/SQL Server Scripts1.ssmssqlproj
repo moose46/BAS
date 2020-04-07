@@ -236,8 +236,8 @@
           <FullPath>Find NS Record by Internal ID.sql</FullPath>
         </FileNode>
         <FileNode Name="Find_BWCustomerID.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Find_BWCustomerID.sql</FullPath>
         </FileNode>
@@ -284,8 +284,8 @@
           <FullPath>NS_VendorQuery.sql</FullPath>
         </FileNode>
         <FileNode Name="Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql</FullPath>
         </FileNode>
@@ -452,20 +452,20 @@
           <FullPath>test_state.sql</FullPath>
         </FileNode>
         <FileNode Name="TimesheetOutstanding.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>TimesheetOutstanding.sql</FullPath>
         </FileNode>
         <FileNode Name="TimesheetTotals.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>TimesheetTotals.sql</FullPath>
         </FileNode>
         <FileNode Name="VendorLocationPuzzlePO.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>VendorLocationPuzzlePO.sql</FullPath>
         </FileNode>

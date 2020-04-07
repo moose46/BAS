@@ -1,7 +1,16 @@
 /****** Script for SelectTopNRows command from SSMS  ******/
+
+USE babblefish
+GO
+
 SELECT TOP (1000)
 	[InvoiceNumber]
-   ,format(sum([WorkedHours] * 65),'$###.00') as total
+   ,format(SUM([WorkedHours] * 65), '$###.00') AS total
 FROM [babblefish].[dbo].[Timesheets]
 WHERE CheckNumber IS NULL
-group by InvoiceNumber
+GROUP BY InvoiceNumber
+
+SELECT
+	format(SUM([WorkedHours] * 65), '$###.00') AS totalOustanding
+FROM TimeSheets
+WHERE CheckNumber IS NULL
