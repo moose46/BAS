@@ -43,6 +43,12 @@
           <AssociatedConnUserName />
           <FullPath>FindAP_Vendors.sql</FullPath>
         </FileNode>
+        <FileNode Name="ListAllVendorsMissingInNS.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>ListAllVendorsMissingInNS.sql</FullPath>
+        </FileNode>
         <FileNode Name="PO_HeaderQuery.sql">
           <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
