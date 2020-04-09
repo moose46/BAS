@@ -1,3 +1,6 @@
+use babblefish
+GO
+
 SELECT
 	vendorno
    ,apdivisionno

@@ -39,6 +39,10 @@ Write-Host "Refreshing Netsuite Customers ...." -ForegroundColor Yellow
 .\DTExec.exe /DTS '\MSDB\NS_Customers' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
 Write-Host "Refreshing Netsuite Customers Completed " -ForegroundColor Green
 
+Write-Host "Refreshing Netsuite Vendors ...." -ForegroundColor Yellow
+.\DTExec.exe /DTS '\MSDB\NS_Vendors' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
+Write-Host "Refreshing Netsuite Vendors Completed " -ForegroundColor Green
+
 
 Write-Host "Refreshing Netsuite Tables Completed ... " -ForegroundColor Green
 

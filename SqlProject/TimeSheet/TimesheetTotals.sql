@@ -24,8 +24,20 @@ UPDATE Timesheets
 SET CheckNumber = 21388
 WHERE InvoiceNumber = 5
 UPDATE Timesheets
+SET CheckNumber = 21594
+WHERE InvoiceNumber = 6
+
+UPDATE Timesheets
+SET CheckNumber = 21594
+WHERE InvoiceNumber = 7
+
+UPDATE Timesheets
 SET CheckNumber = 21529
 WHERE InvoiceNumber = 8
+
+UPDATE Timesheets
+SET CheckNumber = 21594
+WHERE InvoiceNumber = 9
 
 
 SELECT
