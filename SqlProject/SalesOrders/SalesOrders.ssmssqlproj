@@ -15,7 +15,7 @@
           <ConnectionProtocol>NotSpecified</ConnectionProtocol>
           <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
         </ConnectionNode>
-        <ConnectionNode Name="DAFFY-DUCK:RED-BARN\me">
+        <ConnectionNode Name="DAFFY-DUCK:DAFFY-DUCK\Bob">
           <Created>2020-04-02T16:14:50.1245193-04:00</Created>
           <Type>SQL</Type>
           <Server>DAFFY-DUCK</Server>
@@ -74,9 +74,9 @@
           <FullPath>NonNumericSalesOrderNo.sql</FullPath>
         </FileNode>
         <FileNode Name="ProcessSalesOrders.sql">
-          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:False:babblefish</AssociatedConnectionMoniker>
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
           <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
-          <AssociatedConnUserName>babblefish</AssociatedConnUserName>
+          <AssociatedConnUserName />
           <FullPath>ProcessSalesOrders.sql</FullPath>
         </FileNode>
         <FileNode Name="ShowAllMissingCustomers.sql">
@@ -84,6 +84,12 @@
           <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>ShowAllMissingCustomers.sql</FullPath>
+        </FileNode>
+        <FileNode Name="UpdateBlankVendorsBlankExternalID.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>UpdateBlankVendorsBlankExternalID.sql</FullPath>
         </FileNode>
       </Items>
     </LogicalFolder>

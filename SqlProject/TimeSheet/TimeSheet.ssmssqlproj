@@ -26,8 +26,8 @@
           <FullPath>TimesheetOutstanding.sql</FullPath>
         </FileNode>
         <FileNode Name="TimesheetTotals.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>TimesheetTotals.sql</FullPath>
         </FileNode>
