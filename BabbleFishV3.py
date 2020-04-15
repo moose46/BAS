@@ -11,6 +11,7 @@ from os import sys, path
 
 from models.Q3accountsManyMatching import AccountsManyMatchingQ3
 from models.constants import EXPORT_FOLDER, ARCHIVE_FOLDER
+from models.cooked_so import Cooked_SO
 from models.file_man import FileMan
 from models.Q1new_customers import NewCustomersQ1
 from models.Q2one_matchingAccount import AccountOneMatchingQ2
@@ -33,19 +34,21 @@ try:
     """ Clean up export dir """
 
 
-    fm = FileMan(ARCHIVE_FOLDER, EXPORT_FOLDER)
-    fm.clean_export_to()
-    q1 = NewCustomersQ1(cursor, EXPORT_FOLDER)
-    #q1.import_excel(AR_CUSTOMER)
-    q1.export_to_csv(serial_number)
-    q2 = AccountOneMatchingQ2(cursor, EXPORT_FOLDER)
-    q2.export_to_csv(serial_number)
-    q3 = AccountsManyMatchingQ3(cursor, EXPORT_FOLDER)
-    q3.export_parent_csv(serial_number)
-    q3.export_children_csv(serial_number)
-    bas3 = ReportDiff(cursor, EXPORT_FOLDER)
-    bas3.export_terms_diff_csv(serial_number)
-    bas3.export_address_diff_csv(serial_number)
-    bas3.export_bas2_csv(serial_number)
+    # fm = FileMan(ARCHIVE_FOLDER, EXPORT_FOLDER)
+    # fm.clean_export_to()
+    # q1 = NewCustomersQ1(cursor, EXPORT_FOLDER)
+    # #q1.import_excel(AR_CUSTOMER)
+    # q1.export_to_csv(serial_number)
+    # q2 = AccountOneMatchingQ2(cursor, EXPORT_FOLDER)
+    # q2.export_to_csv(serial_number)
+    # q3 = AccountsManyMatchingQ3(cursor, EXPORT_FOLDER)
+    # q3.export_parent_csv(serial_number)
+    # q3.export_children_csv(serial_number)
+    # bas3 = ReportDiff(cursor, EXPORT_FOLDER)
+    # bas3.export_terms_diff_csv(serial_number)
+    # bas3.export_address_diff_csv(serial_number)
+    # bas3.export_bas2_csv(serial_number)
+    so = Cooked_SO(cursor,EXPORT_FOLDER)
+    so.export_to_csv(serial_number)
 except Exception as e:
     print(e)

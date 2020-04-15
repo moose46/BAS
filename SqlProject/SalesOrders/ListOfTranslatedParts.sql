@@ -83,7 +83,8 @@ LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo --LEFT 
 WHERE
   OrderType = 'R'
   and sod.ItemCode is not null
-  and soh.DateCreated >= DATEADD(YEAR, -1, getdate()) --AND soh.SalesOrderNo LIKE '00715%'
+  --and soh.DateCreated >= DATEADD(YEAR, -1, getdate())
+  AND soh.SalesOrderNo LIKE '0070853%'
   and ItemCode in (
     Select
       ItemCode ItemCode

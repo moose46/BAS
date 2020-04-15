@@ -114,7 +114,7 @@ SELECT
 ,
   [UnitPrice] AS [itemLine_amount] -- SO Details
 ,case
-    when (ItemCode like '/BAS-PMFL2') then 'Semi Annual Preventave Maintenance' + char(10) +'Step 1 of 2'
+    when (ItemCode like '/BAS-PMFL2') then ''
     when (
       ItemCode like '/SLP-HP-WITH MAINTENANCE'
     ) then 'Single High Pressure Air Test. Quarterly Air Testing'
@@ -199,13 +199,14 @@ SELECT
   '?' AS [custbody_nsts_ci_exclude],
   '?' AS [custom:Field Name],
   '?' AS [custom:Field Name1],
-  '?' AS [custom:Field Name2] -- INTO SO_COOKED
+  '?' AS [custom:Field Name2],
+  sod.LineSeqNo  INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
   OrderType = 'R'
-  --and soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
+  --AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
   AND soh.SalesOrderNo LIKE '0070853%'
 ORDER BY
   sod.SalesOrderNo,

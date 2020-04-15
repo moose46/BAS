@@ -44,5 +44,5 @@ Write-Host "Refreshing Netsuite Vendors ...." -ForegroundColor Yellow
 Write-Host "Refreshing Netsuite Vendors Completed " -ForegroundColor Green
 
 
-Write-Host "Refreshing Netsuite Tables Completed ... " -ForegroundColor Green
+Write-Host "Refreshing ALL Netsuite Tables Completed ... " -ForegroundColor Green
 
