@@ -100,7 +100,7 @@ SELECT
         xl.MAS = REPLACE(sod.ItemCode, '/', '')
     )
     ELSE case
-    -- removed per email FW: Credit Card Fee - got an answer from Mark
+      -- removed per email FW: Credit Card Fee - got an answer from Mark
       -- when ItemCode like '/CC FEE' then REPLACE(Replace(sod.ItemCode, '/CC', 'Comment'), '/', '')
       when ItemCode like '/C' then REPLACE(Replace(sod.ItemCode, '/C', 'Comment'), '/', '')
       else REPLACE(sod.ItemCode, '/', '')
@@ -111,14 +111,79 @@ SELECT
   '?' AS [itemLine_serialNumbers],
   sod.UnitOfMeasure AS [itemLine_units] -- SO Details
 ,
-  sod.UnitPrice AS [itemLine_salesPrice] -- SO Details
-,
-  [UnitPrice] AS [itemLine_amount] -- SO Details
+  --sod.UnitPrice AS [itemLine_salesPrice] -- SO Details
+  case
+    -- replace the itemLine_salesPrice with the base price from NetSuite
+    WHEN EXISTS (
+      SELECT
+        NetSuite
+      FROM ITEMCODE_MAS_NS x2
+      WHERE
+        x2.MAS = REPLACE(sod.ItemCode, '/', '')
+    ) then (
+      select
+        [Base Price]
+      from Items
+      where
+        Items.Name = (
+          SELECT
+            x2.NETSUITE
+          FROM ITEMCODE_MAS_NS x2
+          WHERE
+            x2.MAS = REPLACE(sod.ItemCode, '/', '')
+        )
+    ) -- did not exist in the ITEM_MAS_NS xlation table
+    when exists (
+      select
+        [External ID]
+      from Items
+      where
+        REPLACE(sod.ItemCode, '/', '') = [External Id]
+    ) then (
+      select
+        [Base Price] -- check with Kathy about this one
+      from Items
+      where
+        REPLACE(sod.ItemCode, '/', '') = [External Id]
+    )
+    else - sod.UnitPrice -- SO Details
+  end AS [itemLine_salesPrice],
+  case
+    -- replace the itemLine_amount with the price from NetSuite
+    when exists (
+      select
+        [External ID]
+      from Items
+      where
+        sod.ItemCode = [External Id]
+    ) then (
+      select
+        [Base Price] -- check with Kathy about this one
+      from Items
+      where
+        sod.ItemCode = [External Id]
+    )
+    else - sod.UnitPrice -- SO Details
+  end AS [itemLine_amount] -- SO Details
 ,case
-    when (ItemCode like '/BAS-PMFL2') then ''
+    -- replace item description with the description from NetSuite
+    when (ItemCode like '/BAS-PMFL2') then 'Semi Annual Preventative Maintenance'
     when (
       ItemCode like '/SLP-HP-WITH MAINTENANCE'
     ) then 'Single High Pressure Air Test. Quarterly Air Testing'
+    when exists (
+      select
+        [External ID]
+      from Items
+      where
+        sod.ItemCode = [External Id]
+    ) then (
+      select
+        [Description]
+      from Items
+      where
+        sod.ItemCode = [External Id]
+    )
     else REPLACE(ItemCodeDesc, ',', '')
   end AS [itemLine_description] -- SO Details
 ,
@@ -201,13 +266,12 @@ SELECT
   '?' AS [custom:Field Name],
   '?' AS [custom:Field Name1],
   '?' AS [custom:Field Name2],
-  sod.LineSeqNo  INTO SO_COOKED
+  sod.LineSeqNo -- INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
-  OrderType = 'R'
-  --AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
+  OrderType = 'R' --AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
   AND soh.SalesOrderNo LIKE '0070853%'
 ORDER BY
   sod.SalesOrderNo,

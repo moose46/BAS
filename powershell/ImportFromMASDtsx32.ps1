@@ -1,4 +1,5 @@
 ﻿
+
 #run as adminstrator
 Clear-Host
 Write-Host "Refreshing Data from CRM MAS ....."
@@ -29,6 +30,28 @@ Write-Host "Refreshing MAS Import_SO_ShipToAddress Complete ...." -ForegroundCol
 
 
 
+function Convert-XlsToXLSX($filename)
+{
+    $xlCSV = 6
+    $xlsx = 51
+    $Excel = New-Object -Com Excel.Application 
+    $Excel.visible = $False 
+    $Excel.displayalerts=$False 
+    $WorkBook = $Excel.Workbooks.Open("$filename.xls") 
+    Write-Host "Converting $filename ...." -ForegroundColor Yellow
+    $Workbook.SaveAs("$filename.xlsx",$xlsx) 
+    $Excel.quit()
+
+}
+
+#cd C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_from_ns
+
+Convert-XlsToXLSX("C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_from_ns\Items")
+Convert-XlsToXLSX("C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_from_ns\NS_Vendors")
+Convert-XlsToXLSX("C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_from_ns\Customers")
+
+
+
 
 Write-Host "All Tables From MAS Refreshed .... " -BackgroundColor Green
 
@@ -42,6 +65,10 @@ Write-Host "Refreshing Netsuite Customers Completed " -ForegroundColor Green
 Write-Host "Refreshing Netsuite Vendors ...." -ForegroundColor Yellow
 .\DTExec.exe /DTS '\MSDB\NS_Vendors' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
 Write-Host "Refreshing Netsuite Vendors Completed " -ForegroundColor Green
+
+Write-Host "Refreshing Netsuite Items ...." -ForegroundColor Yellow
+.\DTExec.exe /DTS '\MSDB\Items' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
+Write-Host "Refreshing Netsuite Items Completed " -ForegroundColor Green
 
 
 Write-Host "Refreshing ALL Netsuite Tables Completed ... " -ForegroundColor Green
