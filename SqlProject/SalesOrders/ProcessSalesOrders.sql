@@ -100,7 +100,8 @@ SELECT
         xl.MAS = REPLACE(sod.ItemCode, '/', '')
     )
     ELSE case
-      when ItemCode like '/CC FEE' then REPLACE(Replace(sod.ItemCode, '/CC', 'Comment'), '/', '')
+    -- removed per email FW: Credit Card Fee - got an answer from Mark
+      -- when ItemCode like '/CC FEE' then REPLACE(Replace(sod.ItemCode, '/CC', 'Comment'), '/', '')
       when ItemCode like '/C' then REPLACE(Replace(sod.ItemCode, '/C', 'Comment'), '/', '')
       else REPLACE(sod.ItemCode, '/', '')
     end
