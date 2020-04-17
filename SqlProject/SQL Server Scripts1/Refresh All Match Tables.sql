@@ -1,5 +1,11 @@
-﻿DROP TABLE MatchOneQ2
+﻿use babblefish
+GO
+
+--DROP TABLE MatchOneQ2
 DELETE FROM MatchManyQ3
+  IF OBJECT_ID('dbo.Q1DATA', 'U') IS NOT NULL DROP TABLE dbo.Q1DATA;
+GO
+
 DROP TABLE Q1DATA
 
 --- Q2

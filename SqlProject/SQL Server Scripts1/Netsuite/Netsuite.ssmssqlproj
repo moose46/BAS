@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<SqlWorkbenchSqlProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Netsuite">
+  <Items>
+    <LogicalFolder Name="Connections" Type="2" Sorted="true">
+      <Items>
+        <ConnectionNode Name="DAFFY-DUCK:DAFFY-DUCK\Bob">
+          <Created>2020-04-06T10:44:50.4154297-04:00</Created>
+          <Type>SQL</Type>
+          <Server>DAFFY-DUCK</Server>
+          <UserName />
+          <Authentication>Windows Authentication</Authentication>
+          <InitialDB>babblefish</InitialDB>
+          <LoginTimeout>30</LoginTimeout>
+          <ExecutionTimeout>0</ExecutionTimeout>
+          <ConnectionProtocol>NotSpecified</ConnectionProtocol>
+          <ApplicationName>Microsoft SQL Server Management Studio - Query</ApplicationName>
+        </ConnectionNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Queries" Type="0" Sorted="true">
+      <Items>
+        <FileNode Name="Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>Nsuite Customer ExternalID equals SLX_Account_ext BWCustomerId.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q2 Find SLX Acoounts One Matching.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Q2 Find SLX Acoounts One Matching.sql</FullPath>
+        </FileNode>
+        <FileNode Name="Q3 V1.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>Q3 V1.sql</FullPath>
+        </FileNode>
+        <FileNode Name="VendorLocationPuzzlePO.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>VendorLocationPuzzlePO.sql</FullPath>
+        </FileNode>
+        <FileNode Name="ViewAllUniqueExternalIDsNetsuite.sql">
+          <AssociatedConnectionMoniker />
+          <AssociatedConnSrvName />
+          <AssociatedConnUserName />
+          <FullPath>ViewAllUniqueExternalIDsNetsuite.sql</FullPath>
+        </FileNode>
+      </Items>
+    </LogicalFolder>
+    <LogicalFolder Name="Miscellaneous" Type="3" Sorted="true">
+      <Items />
+    </LogicalFolder>
+  </Items>
+</SqlWorkbenchSqlProject>
