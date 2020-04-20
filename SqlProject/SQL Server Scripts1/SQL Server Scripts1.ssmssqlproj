@@ -338,20 +338,20 @@
           <FullPath>ProcessSalesOrders.sql</FullPath>
         </FileNode>
         <FileNode Name="Q1 Customers By Date Created.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Q1 Customers By Date Created.sql</FullPath>
         </FileNode>
         <FileNode Name="Q2 Find SLX Acoounts One Matching.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Q2 Find SLX Acoounts One Matching.sql</FullPath>
         </FileNode>
         <FileNode Name="Q2 V2.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Q2 V2.sql</FullPath>
         </FileNode>
@@ -416,8 +416,8 @@
           <FullPath>Record Count All Tables.sql</FullPath>
         </FileNode>
         <FileNode Name="Refresh All Match Tables.sql">
-          <AssociatedConnectionMoniker />
-          <AssociatedConnSrvName />
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
           <AssociatedConnUserName />
           <FullPath>Refresh All Match Tables.sql</FullPath>
         </FileNode>

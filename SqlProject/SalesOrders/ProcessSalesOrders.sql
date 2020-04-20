@@ -132,7 +132,7 @@ SELECT
           WHERE
             x2.MAS = REPLACE(sod.ItemCode, '/', '')
         )
-    ) -- did not exist in the ITEM_MAS_NS xlation table
+    ) -- did not exist in the ITEM_MAS_NS xlation table, look up items table
     when exists (
       select
         [External ID]
@@ -145,6 +145,20 @@ SELECT
       from Items
       where
         REPLACE(sod.ItemCode, '/', '') = [External Id]
+    )
+    -- try to find it by the item name, not external id present in netsuite item table
+    when exists(
+      select
+        Name
+      from items
+      where
+        Name = REPLACE(sod.ItemCode, '/', '')
+    ) then (
+      select
+        [base price]
+      from items
+      where
+        name = REPLACE(sod.ItemCode, '/', '')
     )
     else - sod.UnitPrice -- SO Details
   end AS [itemLine_salesPrice],
