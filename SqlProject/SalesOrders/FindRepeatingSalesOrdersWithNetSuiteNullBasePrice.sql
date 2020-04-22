@@ -1,6 +1,6 @@
 SELECT
-	SO_SalesOrderDetail.SalesOrderNo
-   ,Name
+	--SO_SalesOrderDetail.SalesOrderNo
+   Name
    ,soh.OrderType
    ,[Internal ID] AS InternalID
    ,[External ID] AS ExternalID
@@ -13,8 +13,8 @@ left JOIN SO_SalesOrderHeader soh
 WHERE [Base Price] IS NULL
 AND soh.OrderType = 'R'
 AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
-GROUP BY SO_SalesOrderDetail.SalesOrderNo
-		,Name
+GROUP BY --SO_SalesOrderDetail.SalesOrderNo
+		Name
 		,soh.OrderType
 		,[Internal ID]
 		,[External ID]

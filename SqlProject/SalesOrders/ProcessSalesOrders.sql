@@ -132,35 +132,35 @@ SELECT
           WHERE
             x2.MAS = REPLACE(sod.ItemCode, '/', '')
         )
-        group by [Base Price]
+      group by
+        [Base Price]
     ) -- did not exist in the ITEM_MAS_NS xlation table, look up items table
-        when exists (
-          select
-            [External ID]
-          from Items
-          where
-            REPLACE(sod.ItemCode, '/', '') = [External Id]
-        ) then (
-          select top(1)
-            [Base Price] -- check with Kathy about this one
-          from Items
-          where
-            REPLACE(sod.ItemCode, '/', '') = [External Id]
-        )
-        -- try to find it by the item name, not external id present in netsuite item table
-        when exists(
-          select top(1)
-            Name
-          from items
-          where
-            Name = REPLACE(sod.ItemCode, '/', '')
-        ) then (
-          select top(1)
-            [base price]
-          from items
-          where
-            name = REPLACE(sod.ItemCode, '/', '')
-        )
+    when exists (
+      select
+        [External ID]
+      from Items
+      where
+        REPLACE(sod.ItemCode, '/', '') = [External Id]
+    ) then (
+      select
+        top(1) [Base Price] -- check with Kathy about this one
+      from Items
+      where
+        REPLACE(sod.ItemCode, '/', '') = [External Id]
+    ) -- try to find it by the item name, not external id present in netsuite item table
+    when exists(
+      select
+        top(1) Name
+      from items
+      where
+        Name = REPLACE(sod.ItemCode, '/', '')
+    ) then (
+      select
+        top(1) [base price]
+      from items
+      where
+        name = REPLACE(sod.ItemCode, '/', '')
+    )
     else - sod.UnitPrice -- SO Details
   end AS [itemLine_salesPrice],
   -- end of itemLine_salesPrice
@@ -181,7 +181,8 @@ SELECT
       from Items
       where
         sod.ItemCode = [External Id]
-        group by [Base Price]
+      group by
+        [Base Price]
     )
     else - sod.UnitPrice -- SO Details
   end AS [itemLine_amount] -- SO Details
@@ -208,19 +209,18 @@ SELECT
     )
     else REPLACE(ItemCodeDesc, ',', '')
   end AS [itemLine_description] -- SO Details
-
   -- End of itemLineIte_description
   -- ========================================================
 ,
-  'NetSuite Desc' as NetSuiteDescription,
+  soh.Comment as NetSuiteDescription, -- just a place holder to be updated later
   '?' AS [itemLine_isTaxable],
   '?' AS [itemLine_priceLevel],
   '?' AS [itemLine_department],
   '?' AS [itemLine_class],
   '?' AS [itemLine_location],
-  '?' AS [itemLine_custom:Field_Name],
-  '?' AS [itemLine_custom:Field_Name1],
-  '?' AS [itemLine_custom:Field_Name2],
+  '?' AS [itemLine_custom_Field_Name],
+  '?' AS [itemLine_custom_Field_Name1],
+  '?' AS [itemLine_custom_Field_Name2],
   '?' AS [shipdate],
   '?' AS [shipcarrier],
   '?' AS [shipmethod],
@@ -289,9 +289,9 @@ SELECT
 ,
   '?' AS [customermessage],
   '?' AS [custbody_nsts_ci_exclude],
-  '?' AS [custom:Field_Name],
-  '?' AS [custom:Field_Name1],
-  '?' AS [custom:Field_Name2],
+  '?' AS [custom_Field_Name],
+  '?' AS [custom_Field_Name1],
+  '?' AS [custom_Field_Name2],
   sod.LineSeqNo INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
@@ -304,11 +304,18 @@ ORDER BY
   sod.LineSeqNo,
   trandate,
   tranId
-
-  Select 'Query Completed, Now Adding Indexes'
+Select
+  'Query Completed, Now Adding Indexes'
 Alter Table SO_COOKED
 Add
   Id Int Identity(1, 1)
 alter table SO_COOKED
 add
   constraint pk_so_cooked primary key (id)
+
+--update Netsuite descriptions
+UPDATE SO_COOKED
+SET NetSuiteDescription = Description
+FROM
+SO_COOKED
+INNER join Items on name = SO_COOKED.final_part

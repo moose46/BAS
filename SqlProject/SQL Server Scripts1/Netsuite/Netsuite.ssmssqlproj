@@ -37,6 +37,12 @@
           <AssociatedConnUserName />
           <FullPath>Q3 V1.sql</FullPath>
         </FileNode>
+        <FileNode Name="NetsuiteItemsWithNullBasePrice.sql">
+          <AssociatedConnectionMoniker>8c91a03d-f9b4-46c0-a305-b5dcc79ff907:DAFFY-DUCK:True</AssociatedConnectionMoniker>
+          <AssociatedConnSrvName>DAFFY-DUCK</AssociatedConnSrvName>
+          <AssociatedConnUserName />
+          <FullPath>C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\SqlProject\SQL Server Scripts1\NetsuiteItemsWithNullBasePrice.sql</FullPath>
+        </FileNode>
         <FileNode Name="VendorLocationPuzzlePO.sql">
           <AssociatedConnectionMoniker />
           <AssociatedConnSrvName />
