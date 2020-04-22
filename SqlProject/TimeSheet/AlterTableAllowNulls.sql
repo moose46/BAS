@@ -17,5 +17,4 @@ ALTER TABLE [dbo].[TimeSheets] ALTER COLUMN [DateUpdated]  [datetime] NULL
 GO
 
 
-ALTER TABLE ITEMCODE_MAS_NS
-ADD CONSTRAINT pk_masns on COLUMN 
+
