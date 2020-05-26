@@ -36,7 +36,7 @@ try:
 
     # fm = FileMan(ARCHIVE_FOLDER, EXPORT_FOLDER)
     # fm.clean_export_to()
-    # q1 = NewCustomersQ1(cursor, EXPORT_FOLDER)
+    q1 = NewCustomersQ1(cursor, EXPORT_FOLDER)
     # #q1.import_excel(AR_CUSTOMER)
     # q1.export_to_csv(serial_number)
     # q2 = AccountOneMatchingQ2(cursor, EXPORT_FOLDER)

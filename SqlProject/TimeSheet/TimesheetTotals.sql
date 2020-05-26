@@ -6,6 +6,8 @@
 --FROM [babblefish].[dbo].[Timesheets]
 --GROUP BY InvoiceNumber
 --ORDER BY InvoiceNumber
+use babblefish
+GO
 
 
 UPDATE Timesheets
@@ -38,6 +40,11 @@ WHERE InvoiceNumber = 8
 UPDATE Timesheets
 SET CheckNumber = 21594
 WHERE InvoiceNumber = 9
+UPDATE Timesheets
+SET CheckNumber = 21717
+WHERE InvoiceNumber = 11
+
+
 
 
 SELECT
