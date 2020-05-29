@@ -127,7 +127,12 @@ do {
       Clear-Host
       Write-Host 'Both Attachments and Mail Merge' -ForegroundColor yellow
       Invoke-Selection('3')
-    } 'q' {
+    } '4' {
+        Clear-Host
+        Write-Host 'Create Process Files Ex: Process2019.ps1' -ForegroundColor White
+        Invoke-Selection('4')
+    }
+     'q' {
       return
     }
   }

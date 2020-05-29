@@ -27,7 +27,7 @@ if ($FILE_TYPE.Contains('MM')) {
 
 
 $ExecutableFileName = $filename[1].Replace(' ', '')
-$LOG_FILENAME = -join ([string]$ExecutableFileName, '.log')
+$LOG_FILENAME = -join($year, '\' ) + -join ([string]$ExecutableFileName, '.log')
 $ZipFileName = -join($year, '\' ) + -join ([string]$ExecutableFileName, '.zip')
 $ExecutableFileName = -join ([string]$ExecutableFileName, '.ps1')
 $ExecutableFileName = -join ([string]$EXPORT_PATH, [string]$ExecutableFileName)
@@ -42,6 +42,7 @@ if (Test-Path $ZipFileName) { Remove-Item $ZipFileName }
 
 "Remove-Item -path  'e:\netsuite attachments\test\*' -Recurse" >> $ExecutableFileName
 "if (Test-Path 'e:\netsuite attachments\$ZipFileName') {Remove-Item 'e:\netsuite attachments\$ZipFileName'}" >> $ExecutableFileName
+"if (Test-Path 'e:\netsuite attachments\$LOG_FILENAME') {Remove-Item 'e:\netsuite attachments\$LOG_FILENAME'}" >> $ExecutableFileName
 
 
 #run sql to create new attachment , get filenames from the attachment_csv table
@@ -59,6 +60,8 @@ if ($FILE_TYPE.Contains('MM')) {
         #$from[0]
         #$from[1]
         $in = $from[0].Trim()
+        $sourceFilename = $from[0].Trim()
+        #$targetFileName = $from[1].trim()
         #$in = $in.Replace('doc ','doc')
         #$to = $from[1].Replace(' ','')
         if ($from[0].Contains('\')) { 
@@ -67,8 +70,8 @@ if ($FILE_TYPE.Contains('MM')) {
                     $in = $in.Replace("&","``&")
                     $in = $in.Replace("'","``'")
                     $inError = $in.Replace("'","''") # this will remove single quotes from the source filename
-                    $test1 = "if (Test-Path 'e:\netsuite attachments\$in') {`n`t" # if this file exists then copy the file, else log it
-                    $test2 = "} else {`n`t '$inError' >> $LOG_FILENAME }"
+                    $test1 = "if (Test-Path 'E:\SalesLogixLan\SlxLanDocuments\Mail Merge\$sourceFilename') {`n`t" # if this file exists then copy the file, else log it
+                    $test2 = "} else {`n`t '$inError' >> `"e:\netsuite attachments\$LOG_FILENAME`" }"
                     $cmd = -join ("Copy-Item -Path `"E:\SalesLogixLan\SlxLanDocuments\Mail Merge", $in) + -join ("`" -Destination `"E:\NETSUITE ATTACHMENTS\test\") + -join ($from[1].Trim(), "`" -Recurse -Force") 
                     $test1 + $cmd + $test2  >> $ExecutableFileName
                 }
@@ -84,6 +87,8 @@ else {
         #$from[0]
         #$from[1]
         $in = $from[0].Trim()
+        $sourceFilename = $from[0].Trim()
+        #$targetFileName = $from[1].trim()
         #$in = $in.Replace('doc ','doc')
         #$to = $from[1].Replace(' ','')
         try {
@@ -93,9 +98,9 @@ else {
                 $in = $in.Replace("&","``&")
                 $in = $in.Replace("'","``'")
                 $inError = $in # this will remove single quotes from the source filename
-                $test1 = "if (Test-Path `"e:\netsuite attachments\$from[1].trim()`") {`n`t" # if this file exists then copy the file, else log it
-                $test2 = "} else {`n`t `"$inError`" >> $LOG_FILENAME }"
-                $cmd = -join ("Copy-Item -Path `"E:\SalesLogixLan\SlxLanDocuments\", $in) + -join ("`" -Destination `"E:\NETSUITE ATTACHMENTS\test\") + -join ($out.Trim(), "`" -Recurse -Force") 
+                $test1 = "if (Test-Path `"E:\SalesLogixLan\SlxLanDocuments\\$sourceFileName`") {`n`t" # if this file exists then copy the file, else log it
+                $test2 = "} else {`n`t `"$inError`" >> `"e:\netsuite attachments\$LOG_FILENAME`"  }"
+                $cmd = -join ("Copy-Item -Path `"E:\SalesLogixLan\SlxLanDocuments\", $sourceFilename) + -join ("`" -Destination `"E:\NETSUITE ATTACHMENTS\test\") + -join ($out.Trim(), "`" -Recurse -Force") 
                 $test1 + $cmd + $test2  >> $ExecutableFileName
             }
             #Write-Host -NoNewline $filecount
