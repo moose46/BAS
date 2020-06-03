@@ -63,7 +63,8 @@ SELECT
 ,
   '?' AS [discount_discountrate],
   --sod.LineKey,sod.LineSeqNo,
-  sod.ItemCode AS [itemLine_item] -- SO Details
+  --added replace to correct comma's in csv file rwc 6/2/2020
+  replace(sod.ItemCode,',',' ') AS [itemLine_item] -- SO Details
 ,CASE
     WHEN EXISTS (
       SELECT
@@ -200,7 +201,8 @@ SELECT
         sod.ItemCode = [External Id]
     ) then (
       select
-        [Description]
+	  -- 6/2/2020 added replace rwc
+        replace([Description],',',' ')
       from Items
       where
         sod.ItemCode = [External Id]
@@ -292,13 +294,34 @@ SELECT
   '?' AS [custom_Field_Name],
   '?' AS [custom_Field_Name1],
   '?' AS [custom_Field_Name2],
+  soh.UDF_MAINTENANCE_PROGRAM,
+  soh.UDF_PM_CONTACT,
+  soh.UDF_PM_SIGNED_DATE,
+  soh.UDF_AIR_TEST_PROGRAM,
+  soh.UDF_AT_START_DATE,
+  soh.UDF_AT_END_DATE,
+  soh.UDF_AIRTEST_BA_MONTHS,
+  soh.UDF_AT_SINGLE_MONTHS,
+  soh.UDF_AIRTEST_SEND_MONTHS,
+  soh.UDF_PREPAY,
+  soh.UDF_PP_DATE,
+  soh.UDF_PP_AMOUNT,
+  soh.UDF_TOTAL_PM_COST,
+  soh.UDF_PREPAY_SO,
+  soh.UDF_PM_AIRTEST,
+  soh.UDF_PM_RUN_MONTHS,
+  soh.UDF_PM_RUN_BRANCH,
+  soh.UDF_PM_START_DATE,
+  soh.UDF_PM_END_DATE,
+  soh.CustomerNo,
+  soh.OrderType,
   sod.LineSeqNo INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
   OrderType = 'R'
-  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) --AND soh.SalesOrderNo LIKE '0070853%'
+  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '0074578%'
 ORDER BY
   sod.SalesOrderNo,
   sod.LineSeqNo,
@@ -314,8 +337,9 @@ add
   constraint pk_so_cooked primary key (id)
 
 --update Netsuite descriptions
+-- added replace 6/2/2020 to remove comma's causing the csv file to get out of line rwc
 UPDATE SO_COOKED
-SET NetSuiteDescription = Description
+SET NetSuiteDescription = replace(Description,',',' ')
 FROM
 SO_COOKED
 INNER join Items on name = SO_COOKED.final_part
