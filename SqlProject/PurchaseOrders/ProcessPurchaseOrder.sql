@@ -1,6 +1,6 @@
 USE babblefish
 GO
-
+-- modified rwc 6/5/2020
 SELECT
 	poh.PurchaseOrderNo AS EXTERNALID-- header
 	--poh.APDivisionNo masdivisionno
@@ -27,7 +27,7 @@ SELECT
 					-314159)
 	END AS netsuite_internal_id
 	, '?' PURCHASE_CONTRACT
-	, '?' EMPLOYEE
+	, usercreatedkey
    ,poh.APDivisionNo + '-' + poh.VendorNo AS netsuite_external_id
 
 FROM PO_PurchaseOrderHeader poh

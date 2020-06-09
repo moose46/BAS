@@ -3,10 +3,18 @@
 -- creates table SO_COOKED
 -- rwc 3/24/2020
 -- added warehouse code, change from sod warehousecode to soh warehousecode
+Select
+  'Dropping the SO_COOKED Table ...'
+
 USE babblefish
 GO
   IF OBJECT_ID('dbo.SO_COOKED', 'U') IS NOT NULL DROP TABLE dbo.SO_COOKED;
 GO
+Select
+  'Started Processing the SO_COOKED Table ...'
+GO
+
+
 SELECT
   SUBSTRING(
     soh.SalesOrderNo,
@@ -112,7 +120,6 @@ SELECT
   '?' AS [itemLine_serialNumbers],
   sod.UnitOfMeasure AS [itemLine_units] -- SO Details
 ,
-  --sod.UnitPrice AS [itemLine_salesPrice] -- SO Details
   case
     -- replace the itemLine_salesPrice with the base price from NetSuite
     WHEN EXISTS (
@@ -122,13 +129,13 @@ SELECT
       WHERE
         x2.MAS = REPLACE(sod.ItemCode, '/', '')
     ) then (
-      select
+      select 
         [Base Price]
       from Items
       where
         Items.Name = (
           SELECT
-            x2.NETSUITE
+            x2.NETSUITE * sod.QuantityOrdered
           FROM ITEMCODE_MAS_NS x2
           WHERE
             x2.MAS = REPLACE(sod.ItemCode, '/', '')
@@ -144,7 +151,7 @@ SELECT
         REPLACE(sod.ItemCode, '/', '') = [External Id]
     ) then (
       select
-        top(1) [Base Price] -- check with Kathy about this one
+        top(1) [Base Price] * sod.QuantityOrdered -- check with Kathy about this one
       from Items
       where
         REPLACE(sod.ItemCode, '/', '') = [External Id]
@@ -175,17 +182,17 @@ SELECT
         [External ID]
       from Items
       where
-        sod.ItemCode = [External Id]
+        replace(sod.ItemCode,'/','') = [External Id]
     ) then (
       select
         [Base Price] -- check with Kathy about this one
       from Items
       where
-        sod.ItemCode = [External Id]
+        replace(sod.ItemCode,'/','') = [External Id]
       group by
         [Base Price]
     )
-    else - sod.UnitPrice -- SO Details
+    else -sod.UnitPrice -- SO Details can't find a price, make it negative
   end AS [itemLine_amount] -- SO Details
 ,case
     -- replace item description with the description from NetSuite
@@ -229,11 +236,12 @@ SELECT
   '?' AS [shipcomplete],
   '?' AS [shipaddresslist],
   '?' AS [shipattention],
-  [ShipToName] AS [shipaddressee] -- SO Header
+  -- added 6/8/2020 rwc
+  replace([ShipToName],',',' ') AS [shipaddressee] -- SO Header
 ,
-  [ShipToAddress1] AS [shipAddr1] -- SO Header
+  replace([ShipToAddress1],',', ' ') AS [shipAddr1] -- SO Header
 ,
-  [ShipToAddress2] AS [shipAddr2] -- SO Header
+  replace([ShipToAddress2], ',', ' ') AS [shipAddr2] -- SO Header
 ,
   [ShipToCity] AS [shipCity] -- SO Header
 ,
@@ -260,11 +268,13 @@ SELECT
     )
   END AS terms,
   '?' AS [billattention],
-  [BillToName] AS [billAddressee] -- SO Header
+  replace([BillToName],',',' ') AS [billAddressee] -- SO Header
 ,
-  [BillToAddress1] AS [billAddr1] -- SO Header
+-- added 6/8/2020 to remove commas for csv file
+  replace([BillToAddress1], ',',' ')AS [billAddr1] -- SO Header
 ,
-  [BillToAddress2] AS [billAddr2] -- SO Header
+  replace([BillToAddress2],',',' ') AS [billAddr2] -- SO Header
+  -------------------------------------------------
 ,
   [BillToCity] AS [billCity] -- SO Header
 ,
@@ -295,9 +305,9 @@ SELECT
   '?' AS [custom_Field_Name1],
   '?' AS [custom_Field_Name2],
   soh.UDF_MAINTENANCE_PROGRAM,
-  soh.UDF_PM_CONTACT,
+  replace(soh.UDF_PM_CONTACT,',', ' ') as UDF_PM_CONTACT,
   soh.UDF_PM_SIGNED_DATE,
-  soh.UDF_AIR_TEST_PROGRAM,
+  replace(soh.UDF_AIR_TEST_PROGRAM,',',' ') as UDF_AIR_TEST_PROGRAM ,
   soh.UDF_AT_START_DATE,
   soh.UDF_AT_END_DATE,
   soh.UDF_AIRTEST_BA_MONTHS,
@@ -306,7 +316,8 @@ SELECT
   soh.UDF_PREPAY,
   soh.UDF_PP_DATE,
   soh.UDF_PP_AMOUNT,
-  soh.UDF_TOTAL_PM_COST,
+  -- 6/8/2020 rwc
+  replace(soh.UDF_TOTAL_PM_COST,',','') as UDF_TOTAL_PM_COST,
   soh.UDF_PREPAY_SO,
   soh.UDF_PM_AIRTEST,
   soh.UDF_PM_RUN_MONTHS,
@@ -321,12 +332,13 @@ LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
   OrderType = 'R'
-  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '0074578%'
+  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())  AND soh.SalesOrderNo LIKE '%74847%'
 ORDER BY
   sod.SalesOrderNo,
   sod.LineSeqNo,
   trandate,
   tranId
+GO
 Select
   'Query Completed, Now Adding Indexes'
 Alter Table SO_COOKED
@@ -335,6 +347,8 @@ Add
 alter table SO_COOKED
 add
   constraint pk_so_cooked primary key (id)
+Select
+  'Updating Netsuite Descriptions ...'
 
 --update Netsuite descriptions
 -- added replace 6/2/2020 to remove comma's causing the csv file to get out of line rwc
@@ -343,3 +357,5 @@ SET NetSuiteDescription = replace(Description,',',' ')
 FROM
 SO_COOKED
 INNER join Items on name = SO_COOKED.final_part
+select 'Process Sales Orders is Now COmpleted'
+

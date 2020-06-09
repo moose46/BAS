@@ -27,6 +27,10 @@ Write-Host "Refreshing MAS Import_SO_ShipToAddress" -ForegroundColor Yellow
 .\DTExec.exe /DTS '\MSDB\Import_SO_ShipToAddress' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
 Write-Host "Refreshing MAS Import_SO_ShipToAddress Complete ...." -ForegroundColor Green
 
+# 6/3/2020 added stored procedure to import SO_Salesperson rwc will be used to xlat ns sales person to mas sales person
+Write-Host "Refreshing MAS SO_Salesperson" -ForegroundColor Yellow
+.\DTExec.exe /DTS '\MSDB\SO_Salesperson' /SERVER DAFFY-DUCK /CHECKPOINTING OFF
+Write-Host "Refreshing MAS SO_Salesperson Complete ...." -ForegroundColor Green
 
 
 
