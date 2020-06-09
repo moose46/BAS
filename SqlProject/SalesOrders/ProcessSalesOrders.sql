@@ -34,8 +34,8 @@ SELECT
 ,
   orderstatus AS [orderstatus] -- SO Header
 ,
-  '?' AS [startdate],
-  '?' AS [enddate],
+  UDF_PM_START_DATE AS [startdate],
+  UDF_PM_END_DATE AS [enddate],
   CustomerPONo AS [otherrefnum] -- SO Header
 ,
   '?' AS [memo],
@@ -130,12 +130,12 @@ SELECT
         x2.MAS = REPLACE(sod.ItemCode, '/', '')
     ) then (
       select 
-        [Base Price]
+        [Base Price]* sod.QuantityOrdered
       from Items
       where
         Items.Name = (
           SELECT
-            x2.NETSUITE * sod.QuantityOrdered
+            x2.NETSUITE
           FROM ITEMCODE_MAS_NS x2
           WHERE
             x2.MAS = REPLACE(sod.ItemCode, '/', '')
@@ -332,7 +332,7 @@ LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
   OrderType = 'R'
-  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())  AND soh.SalesOrderNo LIKE '%74847%'
+  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '%74847%'
 ORDER BY
   sod.SalesOrderNo,
   sod.LineSeqNo,
