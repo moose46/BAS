@@ -120,62 +120,63 @@ SELECT
   '?' AS [itemLine_serialNumbers],
   sod.UnitOfMeasure AS [itemLine_units] -- SO Details
 ,
-  case
-    -- replace the itemLine_salesPrice with the base price from NetSuite
-    WHEN EXISTS (
-      SELECT
-        NetSuite
-      FROM ITEMCODE_MAS_NS x2
-      WHERE
-        x2.MAS = REPLACE(sod.ItemCode, '/', '')
-    ) then (
-      select 
-        [Base Price]* sod.QuantityOrdered
-      from Items
-      where
-        Items.Name = (
-          SELECT
-            x2.NETSUITE
-          FROM ITEMCODE_MAS_NS x2
-          WHERE
-            x2.MAS = REPLACE(sod.ItemCode, '/', '')
-        )
-      group by
-        [Base Price]
-    ) -- did not exist in the ITEM_MAS_NS xlation table, look up items table
-    when exists (
-      select
-        [External ID]
-      from Items
-      where
-        REPLACE(sod.ItemCode, '/', '') = [External Id]
-    ) then (
-      select
-        top(1) [Base Price] * sod.QuantityOrdered -- check with Kathy about this one
-      from Items
-      where
-        REPLACE(sod.ItemCode, '/', '') = [External Id]
-    ) -- try to find it by the item name, not external id present in netsuite item table
-    when exists(
-      select
-        top(1) Name
-      from items
-      where
-        Name = REPLACE(sod.ItemCode, '/', '')
-    ) then (
-      select
-        top(1) [base price]
-      from items
-      where
-        name = REPLACE(sod.ItemCode, '/', '')
-    )
-    else - sod.UnitPrice -- SO Details
-  end AS [itemLine_salesPrice],
+  --case
+  --  -- replace the itemLine_salesPrice with the base price from NetSuite
+  --  WHEN EXISTS (
+  --    SELECT
+  --      NetSuite
+  --    FROM ITEMCODE_MAS_NS x2
+  --    WHERE
+  --      x2.MAS = REPLACE(sod.ItemCode, '/', '')
+  --  ) then (
+  --    select 
+  --      [Base Price]* sod.QuantityOrdered
+  --    from Items
+  --    where
+  --      Items.Name = (
+  --        SELECT
+  --          x2.NETSUITE
+  --        FROM ITEMCODE_MAS_NS x2
+  --        WHERE
+  --          x2.MAS = REPLACE(sod.ItemCode, '/', '')
+  --      )
+  --    group by
+  --      [Base Price]
+  --  ) -- did not exist in the ITEM_MAS_NS xlation table, look up items table
+  --  when exists (
+  --    select
+  --      [External ID]
+  --    from Items
+  --    where
+  --      REPLACE(sod.ItemCode, '/', '') = [External Id]
+  --  ) then (
+  --    select
+  --      top(1) [Base Price] * sod.QuantityOrdered -- check with Kathy about this one
+  --    from Items
+  --    where
+  --      REPLACE(sod.ItemCode, '/', '') = [External Id]
+  --  ) -- try to find it by the item name, not external id present in netsuite item table
+  --  when exists(
+  --    select
+  --      top(1) Name
+  --    from items
+  --    where
+  --      Name = REPLACE(sod.ItemCode, '/', '')
+  --  ) then (
+  --    select
+  --      top(1) [base price]
+  --    from items
+  --    where
+  --      name = REPLACE(sod.ItemCode, '/', '')
+  --  )
+  --  else - sod.UnitPrice -- SO Details
+  sod.UnitPrice as itemLine_salesPrice
+  --end AS [itemLine_salesPrice],
   -- end of itemLine_salesPrice
   -- =============================================================
   -- start of itemLine_description
   --===============================================================
-  case
+  ,case
     -- replace the itemLine_amount with the price from NetSuite
     when exists (
       select
@@ -332,7 +333,7 @@ LEFT JOIN SO_SalesOrderDetail sod ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc ON arc.CustomerNo = soh.CustomerNo
 WHERE
   OrderType = 'R'
-  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '%74847%'
+  AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '%74886%'
 ORDER BY
   sod.SalesOrderNo,
   sod.LineSeqNo,
@@ -357,5 +358,16 @@ SET NetSuiteDescription = replace(Description,',',' ')
 FROM
 SO_COOKED
 INNER join Items on name = SO_COOKED.final_part
-select 'Process Sales Orders is Now COmpleted'
 
+UPDATE SO_COOKED
+set itemLine_salesPrice = [Base Price]
+from SO_COOKED
+INNER Join Items on name = SO_COOKED.final_Part
+
+
+UPDATE SO_COOKED
+set itemLine_amount = [Base Price] * itemLine_quantity
+from SO_COOKED
+INNER Join Items on name = SO_COOKED.final_Part
+
+select 'Process Sales Orders is Now COmpleted'
