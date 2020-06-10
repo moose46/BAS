@@ -365,6 +365,7 @@ from SO_COOKED
 INNER Join Items on name = SO_COOKED.final_Part
 
 
+
 UPDATE SO_COOKED
 set itemLine_amount = [Base Price] * itemLine_quantity
 from SO_COOKED
