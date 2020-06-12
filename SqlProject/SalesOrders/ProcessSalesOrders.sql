@@ -29,8 +29,8 @@ SELECT
    ,soh.CustomerNo AS [Customer] -- AR Customer
    ,FORMAT(soh.OrderDate, 'MM/dd/yy') AS [trandate] -- SO Header
    ,orderstatus AS [orderstatus] -- SO Header
-   ,soh.UDF_PM_START_DATE AS custbody_bas_pm_start_date
-   ,soh.UDF_PM_END_DATE AS custbody_bas_pm_end_date
+   ,FORMAT(soh.UDF_PM_START_DATE, 'MM/dd/yyyy') AS custbody_bas_pm_start_date
+   ,FORMAT(soh.UDF_PM_END_DATE, 'MM/dd/yyyy') AS custbody_bas_pm_end_date
    ,CustomerPONo AS [otherrefnum] -- SO Header
    ,soh.SalespersonNo AS [salesrep] -- SO Header
    ,'Service: Field Service' AS [Department]
@@ -46,10 +46,10 @@ SELECT
 				WHERE soh.WarehouseCode = Warehouse)
 	END AS [Location] -- SO Header
    ,sod.Discount AS [discount_discountItem] -- SO Details
-   
+
 	--sod.LineKey,sod.LineSeqNo,
 	--added replace to correct comma's in csv file rwc 6/2/2020
-	,REPLACE(sod.ItemCode, ',', ' ') AS [itemLine_item] -- SO Details
+   ,REPLACE(sod.ItemCode, ',', ' ') AS [itemLine_item] -- SO Details
    ,CASE
 		WHEN EXISTS (SELECT
 					*
@@ -156,15 +156,15 @@ SELECT
    ,soh.FaxNo AS [fax] -- SO Header
    ,soh.UDF_MAINTENANCE_PROGRAM
    ,REPLACE(soh.UDF_PM_CONTACT, ',', ' ') AS UDF_PM_CONTACT
-   ,soh.UDF_PM_SIGNED_DATE
+   ,FORMAT(soh.UDF_PM_SIGNED_DATE, 'MM/dd/yyyy') AS UDF_PM_SIGNED_DATE
    ,REPLACE(soh.UDF_AIR_TEST_PROGRAM, ',', ' ') AS UDF_AIR_TEST_PROGRAM
-   ,soh.UDF_AT_START_DATE
-   ,soh.UDF_AT_END_DATE
+   ,FORMAT(CAST(soh.UDF_AT_START_DATE AS DATE), 'MM/dd/yyyy') AS UDF_AT_START_DATE
+   ,FORMAT(CAST(soh.UDF_AT_END_DATE AS DATE), 'MM/dd/yyyy') AS UDF_AT_END_DATE
    ,soh.UDF_AIRTEST_BA_MONTHS
    ,soh.UDF_AT_SINGLE_MONTHS
    ,soh.UDF_AIRTEST_SEND_MONTHS
    ,soh.UDF_PREPAY
-   ,soh.UDF_PP_DATE
+   ,FORMAT(CAST(soh.UDF_PP_DATE AS DATE), 'MM/dd/yyyy') AS UDF_PP_DATE
    ,soh.UDF_PP_AMOUNT
    ,
 	-- 6/8/2020 rwc
@@ -173,8 +173,8 @@ SELECT
    ,soh.UDF_PM_AIRTEST
    ,soh.UDF_PM_RUN_MONTHS
    ,soh.UDF_PM_RUN_BRANCH
-   ,soh.UDF_PM_START_DATE
-   ,soh.UDF_PM_END_DATE
+   ,FORMAT(soh.UDF_PM_START_DATE, 'MM/dd/yyyy') AS UDF_PM_START_DATE
+   ,FORMAT(soh.UDF_PM_END_DATE, 'MM/dd/yyyy') AS UDF_PM_END_DATE
    ,soh.CustomerPONo
    ,soh.OrderType
    ,sod.LineSeqNo INTO SO_COOKED
@@ -184,7 +184,9 @@ LEFT JOIN SO_SalesOrderDetail sod
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
 WHERE OrderType = 'R'
-AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE()) -- AND soh.SalesOrderNo LIKE '%74886%'
+AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
+--AND soh.SalesOrderNo LIKE '%69520%'
+--and soh.SalesOrderNo between 69520 and 70075 for kathy testing
 ORDER BY sod.SalesOrderNo,
 sod.LineSeqNo,
 trandate,
@@ -226,5 +228,5 @@ INNER JOIN Items
 	ON name = SO_COOKED.final_Part
 GO
 SELECT
-	'Process Sales Orders is Now COmpleted'
+	'Process Sales Orders is Now Completed!'
 GO
