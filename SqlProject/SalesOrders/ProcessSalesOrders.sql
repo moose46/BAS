@@ -21,7 +21,7 @@ SELECT
 	PATINDEX('%[^%0]%', soh.SalesOrderNo),
 	LEN(soh.SalesOrderNo)
 	) AS externalid -- SO Header
-   ,SUBSTRING(
+   ,'SO' + SUBSTRING( -- added SO to the service order on TranID 6/22/2020
 	soh.SalesOrderNo,
 	PATINDEX('%[^%0]%', soh.SalesOrderNo),
 	LEN(soh.SalesOrderNo)
@@ -79,24 +79,13 @@ SELECT
 			END
 	END AS final_part
    ,sod.QuantityOrdered AS [itemLine_quantity] -- SO Details
-   ,sod.UnitPrice AS itemLine_salesPrice
+   ,sod.UnitPrice AS itemLine_salesPrice -- col Q
 	--end AS [itemLine_salesPrice],
 	-- end of itemLine_salesPrice
 	-- =============================================================
 	-- start of itemLine_description
 	--===============================================================
-   ,CASE
-		-- replace the itemLine_amount with the price from NetSuite
-		WHEN EXISTS (SELECT
-					[External ID]
-				FROM Items
-				WHERE REPLACE(sod.ItemCode, '/', '') = [External Id]) THEN (SELECT
-					[Base Price] -- check with Kathy about this one
-				FROM Items
-				WHERE REPLACE(sod.ItemCode, '/', '') = [External Id]
-				GROUP BY [Base Price])
-		ELSE -sod.UnitPrice -- SO Details can't find a price, make it negative
-	END AS [itemLine_amount] -- SO Details
+   ,sod.UnitPrice [itemLine_amount] -- SO Details removed per email from Kathy NOW HE TELLS ME HE NEEDS THE PRICE FROM THE SALES ORDER DATA IN MAS . . . NOT NETSUITE!!!!
    ,CASE
 		-- replace item description with the description from NetSuite
 		WHEN (ItemCode LIKE '/BAS-PMFL2') THEN 'Semi Annual Preventative Maintenance'
@@ -183,10 +172,11 @@ LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
-WHERE OrderType = 'R'
-AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
---AND soh.SalesOrderNo LIKE '%69520%'
---and soh.SalesOrderNo between 69520 and 70075 for kathy testing
+--WHERE OrderType = 'R'
+--AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
+--AND soh.SalesOrderNo LIKE '%69520%' -- test only
+--AND soh.SalesOrderNo BETWEEN 69520 AND 70075 -- test only
+and soh.SalesOrderNo = '%69910'
 ORDER BY sod.SalesOrderNo,
 sod.LineSeqNo,
 trandate,
@@ -211,22 +201,22 @@ FROM SO_COOKED
 INNER JOIN Items
 	ON name = SO_COOKED.final_part
 GO
-UPDATE SO_COOKED
-SET itemLine_salesPrice = [Base Price]
-FROM SO_COOKED
-INNER JOIN Items
-	ON name = SO_COOKED.final_Part
+--UPDATE SO_COOKED
+--SET itemLine_salesPrice = [Base Price]
+--FROM SO_COOKED
+--INNER JOIN Items
+--	ON name = SO_COOKED.final_Part
 
 GO
 SELECT
 	'Updating itemLine_amount..'
 
-UPDATE SO_COOKED
-SET itemLine_amount = [Base Price] * itemLine_quantity
-FROM SO_COOKED
-INNER JOIN Items
-	ON name = SO_COOKED.final_Part
-GO
+--UPDATE SO_COOKED
+--SET itemLine_amount = [Base Price] * itemLine_quantity
+--FROM SO_COOKED
+--INNER JOIN Items
+--	ON name = SO_COOKED.final_Part
+--GO
 SELECT
 	'Process Sales Orders is Now Completed!'
 GO
