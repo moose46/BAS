@@ -85,7 +85,7 @@ SELECT
 	-- =============================================================
 	-- start of itemLine_description
 	--===============================================================
-   ,sod.UnitPrice [itemLine_amount] -- SO Details removed per email from Kathy NOW HE TELLS ME HE NEEDS THE PRICE FROM THE SALES ORDER DATA IN MAS . . . NOT NETSUITE!!!!
+   ,sod.UnitPrice * sod.QuantityOrdered AS [itemLine_amount] -- SO Details removed per email from Kathy NOW HE TELLS ME HE NEEDS THE PRICE FROM THE SALES ORDER DATA IN MAS . . . NOT NETSUITE!!!!
    ,CASE
 		-- replace item description with the description from NetSuite
 		WHEN (ItemCode LIKE '/BAS-PMFL2') THEN 'Semi Annual Preventative Maintenance'
@@ -166,21 +166,20 @@ SELECT
    ,FORMAT(soh.UDF_PM_END_DATE, 'MM/dd/yyyy') AS UDF_PM_END_DATE
    ,soh.CustomerPONo
    ,soh.OrderType
-   ,sod.LineSeqNo INTO SO_COOKED
+   , sod.LineSeqNo LineSeqNo INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
---WHERE OrderType = 'R'
+WHERE --OrderType = 'R'
 --AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
 --AND soh.SalesOrderNo LIKE '%69520%' -- test only
---AND soh.SalesOrderNo BETWEEN 69520 AND 70075 -- test only
-and soh.SalesOrderNo = '%69910'
-ORDER BY sod.SalesOrderNo,
-sod.LineSeqNo,
-trandate,
-tranId
+soh.SalesOrderNo BETWEEN 69520 AND 70075 -- test only
+--where soh.SalesOrderNo like '%69910'
+ORDER BY externalid,
+LineSeqNo
+--trandate,
 GO
 SELECT
 	'Query Completed, Now Adding Indexes'
@@ -207,16 +206,11 @@ GO
 --INNER JOIN Items
 --	ON name = SO_COOKED.final_Part
 
-GO
-SELECT
-	'Updating itemLine_amount..'
-
---UPDATE SO_COOKED
---SET itemLine_amount = [Base Price] * itemLine_quantity
---FROM SO_COOKED
---INNER JOIN Items
---	ON name = SO_COOKED.final_Part
 --GO
+--SELECT
+--	'Updating itemLine_amount..'
+
+
 SELECT
 	'Process Sales Orders is Now Completed!'
 GO
