@@ -109,6 +109,7 @@ function Show-Menu {
   Write-Host "1: Press 1 for Mail Merge Only"
   Write-Host "2: Press 2 for Attachments Only"
   Write-Host "3: Press 3 for Both"
+  Write-Host "4: Press 4 for Create Zip File Copy Scripts"
   Write-Host "Q: Press Q to Quit"
 }
 do {

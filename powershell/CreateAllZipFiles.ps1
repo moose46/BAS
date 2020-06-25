@@ -52,7 +52,8 @@ function Invoke-Attachments() {
     for ($quarter = 1; $quarter -lt 5; $quarter++) {
       Clear-Host
       Write-Host "Processing...." $year $quarter -foreground Green
-      Powershell -Command "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\CreateCSV_ATTACHMENT_AT_params.ps1 $year $quarter"
+      # rwc 6/25/2020 add ByMonth
+      Powershell -Command "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\CreateCSV_ATTACHMENT_AT_paramsByMonth.ps1 $year $quarter"
     }
   }
 

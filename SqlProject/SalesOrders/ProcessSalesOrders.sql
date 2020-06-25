@@ -112,8 +112,8 @@ SELECT
    ,
 	-- added 6/8/2020 rwc
 	REPLACE([ShipToName], ',', ' ') AS [shipaddressee] -- SO Header
-   ,REPLACE([ShipToAddress1], ',', ' ') AS [shipAddr1] -- SO Header
-   ,REPLACE([ShipToAddress2], ',', ' ') AS [shipAddr2] -- SO Header
+   ,' ' AS [shipAddr1] -- SO Header
+   ,' ' AS [shipAddr2] -- SO Header
    ,[ShipToCity] AS [shipCity] -- SO Header
    ,[ShipToCity] AS [shipState] -- SO Header
    ,[ShipToZipCode] AS [shipZip] -- SO Header
@@ -131,15 +131,15 @@ SELECT
    ,REPLACE([BillToName], ',', ' ') AS [billAddressee] -- SO Header
    ,
 	-- added 6/8/2020 to remove commas for csv file
-	REPLACE([BillToAddress1], ',', ' ') AS [billAddr1] -- SO Header
-   ,REPLACE([BillToAddress2], ',', ' ') AS [billAddr2] -- SO Header
+	' ' AS [billAddr1] -- SO Header
+   ,' ' AS [billAddr2] -- SO Header
 	-------------------------------------------------
    ,[BillToCity] AS [billCity] -- SO Header
    ,[BillToState] AS [billState] -- SO Header
    ,[BillToZipCode] AS [billZip] -- SO Header
    ,[BillToCountryCode] AS [billCountry] -- SO Header
    ,'?' AS [exchangerate]
-   ,arc.TaxSchedule AS [istaxable]
+   ,soh.TaxSchedule AS [istaxable] -- AR_Customer changes 6/25/2020 rwc 
 	-- AR Customer
    ,arc.EmailAddress AS [email] -- AR Customer
    ,soh.FaxNo AS [fax] -- SO Header
@@ -166,16 +166,16 @@ SELECT
    ,FORMAT(soh.UDF_PM_END_DATE, 'MM/dd/yyyy') AS UDF_PM_END_DATE
    ,soh.CustomerPONo
    ,soh.OrderType
-   , sod.LineSeqNo LineSeqNo INTO SO_COOKED
+   , cast(sod.LineSeqNo as BIGINT) LineSeqNo INTO SO_COOKED
 FROM [babblefish].[dbo].[SO_SalesOrderHeader] soh
 LEFT JOIN SO_SalesOrderDetail sod
 	ON sod.SalesOrderNo = soh.SalesOrderNo
 LEFT JOIN AR_Customer arc
 	ON arc.CustomerNo = soh.CustomerNo
-WHERE --OrderType = 'R'
+WHERE OrderType = 'R'
 --AND soh.DateCreated >= DATEADD(YEAR, -1, GETDATE())
 --AND soh.SalesOrderNo LIKE '%69520%' -- test only
-soh.SalesOrderNo BETWEEN 69520 AND 70075 -- test only
+--AND soh.SalesOrderNo BETWEEN 69520 AND 70075 -- test only
 --where soh.SalesOrderNo like '%69910'
 ORDER BY externalid,
 LineSeqNo
