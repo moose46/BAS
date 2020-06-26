@@ -127,8 +127,8 @@ SELECT
 				FROM AR_CUSTOMER_TERMS_CODE
 				WHERE TERMS_CODE = arc.TermsCode)
 	END AS terms
-   ,SOH.ConfirmTo AS [billattention]
-   ,REPLACE([BillToName], ',', ' ') AS [billAddressee] -- SO Header
+   ,replace(SOH.ConfirmTo,',',' ') AS [billattention] -- added replace 6/20/2020 to remove commas
+   ,' ' AS [billAddressee] -- SO Header
    ,
 	-- added 6/8/2020 to remove commas for csv file
 	' ' AS [billAddr1] -- SO Header
