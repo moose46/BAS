@@ -15,7 +15,7 @@ function Invoke-Mail-Merge() {
   if (Test-Path $ERROR_FILENAME) { Remove-Item $ERROR_FILENAME }
   # Loop through all years and quarters
   for ($year = 2015; $year -lt 2021; $year++) {
-    for ($quarter = 1; $quarter -lt 2; $quarter++) {
+    for ($quarter = 1; $quarter -lt 5; $quarter++) {
       Clear-Host
       Write-Host "Processing...." $year $quarter -foreground Green
       Powershell -Command "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\CreateCSV_ATTACHMENT_MM_params.ps1 $year $quarter"

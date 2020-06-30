@@ -15,13 +15,14 @@ Set-Variable -Name TABLE_NAME -Value 'ATTACHMENT_CSV'
 Set-Variable -Name EXPORT_HEADER_FILE_NAME  -Value 'ATTACHMENT_CSV_HEADERS.csv'
 Set-Variable -Name EXPORT_TXT_FILENAME -Value 'ATTACHMENT_CSV.txt'
 Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\AT\'
+Set-Variable -Name EXPORT_CSV_FILENAME -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\AT\'
 Set-Location $EXPORT_PATH
-#Write-Host $EXPORT_PATH
+Write-Host $EXPORT_PATH
 
 [string[]]$Filename = sqlcmd -d babblefish --% -S daffy-duck -E -h -1 -k1 -i "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\CreateCopyScriptFileNameByMonth.sql"
 
-$EXPORT_DATA_FILE_NAME = $filename[1].Replace(' ', '')
-$EXPORT_DATA_FILE_NAME = -join ([string]$EXPORT_DATA_FILE_NAME, '.csv')
+$EXPORT_CSV_FILE_NAME = $filename[1].Replace(' ', '')
+$EXPORT_CSV_FILE_NAME = -join ([string]$EXPORT_CSV_FILE_NAME, '.csv')
 $EXPORT_DATA_FILE_NAME = -join ([string]$EXPORT_PATH, [string]$EXPORT_DATA_FILE_NAME)
 $EXPORT_DATA_FILE_NAME = -join ($year, '_') + -join($month,'_AT.ps1')
 if($EXPORT_DATA_FILE_NAME.Length -eq 0) { # no data found for this year and quarter
@@ -45,16 +46,16 @@ bcp "select attachid, [external id], [internal id], caseNumberref, transactionHa
 
 
 #### Combine both files
-Get-Content $EXPORT_HEADER_FILE_NAME, $EXPORT_TXT_FILENAME | Set-Content $EXPORT_DATA_FILE_NAME
+Get-Content $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME, $EXPORT_PATH\$EXPORT_TXT_FILENAME | Set-Content $EXPORT_PATH\$EXPORT_CSV_FILE_NAME
 
 #### delete text file
 Remove-Item $EXPORT_TXT_FILENAME
 Remove-Item $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME
 #sqlcmd  -E  -Q "DECLARE @colnames VARCHAR(max);select @colnames = COALESCE(@colnames + ',', '') + column_name from babblefish.information_schema.COLUMNS where table_name = 'ATTACHMENT_TEMPLATE_IMPORT';" > ATTACHMENT_TEMPLATE_IMPORT_HEADERS.csv
 Clear-Host
-$shortName = [System.IO.Path]::GetFilename($EXPORT_DATA_FILE_NAME)
+$shortName = [System.IO.Path]::GetFilename($EXPORT_CSV_FILE_NAME)
 Write-Output "CSV File $shortName Created ... "
 #cd "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\"
 PowerShell -Command C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\CreateCopyScripts.ps1 -FILE_TYPE AT -YEAR $year
-remove-item $EXPORT_PATH\*.csv
+#remove-item $EXPORT_PATH\*.csv
 

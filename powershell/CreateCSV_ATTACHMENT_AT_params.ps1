@@ -14,7 +14,7 @@ Set-Variable -Name EXPORT_DB -Value 'babblefish'
 Set-Variable -Name TABLE_NAME -Value 'ATTACHMENT_CSV'
 Set-Variable -Name EXPORT_HEADER_FILE_NAME  -Value 'ATTACHMENT_CSV_HEADERS.csv'
 Set-Variable -Name EXPORT_TXT_FILENAME -Value 'ATTACHMENT_CSV.txt'
-Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\Attachments'
+Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\data_to_crm\AT'
 Set-Location $EXPORT_PATH
 #Write-Host $EXPORT_PATH
 

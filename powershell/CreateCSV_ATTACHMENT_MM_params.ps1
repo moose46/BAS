@@ -18,7 +18,7 @@ Set-Variable -Name EXPORT_PATH -Value 'C:\Users\me\Source\Repos\BabbleFishV4\Bab
 if (!(Test-Path $EXPORT_PATH)) {New-Item -ItemType Directory -Force -Path $EXPORT_PATH} 
 Set-Location $EXPORT_PATH
 #Write-Host $EXPORT_PATH
-#[string[]]$Filename = sqlcmd -d babblefish --% -S daffy-duck -E -h -1 -k1 -i "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\CreateCopyScriptFileName.sql"
+[string[]]$Filename = sqlcmd -d babblefish --% -S daffy-duck -E -h -1 -k1 -i "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\sql_querys\CreateCopyScriptFileName.sql"
 #write-host $Filename
 
 #$EXPORT_DATA_FILE_NAME = $filename[1].Replace(' ', '')
@@ -39,24 +39,25 @@ if (Test-Path $EXPORT_DATA_FILE_NAME) { Remove-Item $EXPORT_DATA_FILE_NAME }
 #### get headers
 #Clear-Host
 $shortName = [System.IO.Path]::GetFileName($EXPORT_DATA_FILE_NAME)
-Write-Host "Creating $shortName Headers ..." -foreground Magenta
+
+Write-Host "Creating $EXPORT_DATA_FILE_NAME Headers ..." -foreground Magenta
 BCP "DECLARE @colnames VARCHAR(max);SELECT @colnames = COALESCE(@colnames + ',', '') + column_name from $EXPORT_DB.INFORMATION_SCHEMA.COLUMNS where TABLE_NAME='$TABLE_NAME'; select @colnames;" queryout $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME -c -T >> .\mylog.log
 
 ##### Get data and save in txt file
 #Clear-Host
 Write-Host "Fetching AttachmentData ..." -ForegroundColor Yellow
-bcp "select attachid, [external id], [internal id], caseNumberref, transactionHandle,title,typeRef, directionRef, memo, filename, attachdate, attachtime,run_id from babblefish.dbo.ATTACHMENT_CSV;" queryout $EXPORT_TXT_FILENAME -d $EXPORT_DB -T -c -t ',' >> .\mylog.log
+bcp "select attachid, [external id], [internal id], caseNumberref, transactionHandle,title,typeRef, directionRef, memo, filename, attachdate, attachtime,run_id from babblefish.dbo.ATTACHMENT_CSV;" queryout $EXPORT_PATH\$EXPORT_TXT_FILENAME -d $EXPORT_DB -T -c -t ',' >> .\mylog.log
 
 
 #### Combine both files
-Get-Content $EXPORT_HEADER_FILE_NAME, $EXPORT_TXT_FILENAME | sc $EXPORT_DATA_FILE_NAME
+Get-Content $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME, $EXPORT_PATH\$EXPORT_TXT_FILENAME | sc $EXPORT_DATA_FILE_NAME
 
 #### delete text file
-Remove-Item $EXPORT_TXT_FILENAME
-Remove-Item $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME
+#Remove-Item $EXPORT_TXT_FILENAME
+#Remove-Item $EXPORT_PATH\$EXPORT_HEADER_FILE_NAME
 #sqlcmd  -E  -Q "DECLARE @colnames VARCHAR(max);select @colnames = COALESCE(@colnames + ',', '') + column_name from babblefish.information_schema.COLUMNS where table_name = 'ATTACHMENT_TEMPLATE_IMPORT';" > ATTACHMENT_TEMPLATE_IMPORT_HEADERS.csv
-#Clear-Host
+Clear-Host
 Write-Output "Creating ... $shortName"
 #cd "C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\"
 PowerShell -Command C:\Users\me\Source\Repos\BabbleFishV4\BabbleFishV3\powershell\CreateCopyScripts.ps1 -FILE_TYPE MM -YEAR $year
-remove-item $EXPORT_PATH\*.csv
+#remove-item $EXPORT_PATH\*.csv
